@@ -1,0 +1,436 @@
+/* Namvio Motion & Graphics — modern ambient UI layer */
+
+:root {
+    --nv-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --nv-motion-duration: 0.55s;
+}
+
+/* Ambient canvas (fixed behind content) */
+.nv-ambient-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.nv-ambient-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.35;
+    background-image:
+        linear-gradient(rgba(79, 70, 229, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79, 70, 229, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 20%, black 20%, transparent 75%);
+}
+
+.nv-ambient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.45;
+    animation: nv-orb-float 18s var(--nv-motion-ease) infinite;
+}
+
+.nv-ambient-orb--1 {
+    width: 420px;
+    height: 420px;
+    top: -120px;
+    left: -80px;
+    background: radial-gradient(circle, rgba(79, 70, 229, 0.35) 0%, transparent 70%);
+    animation-duration: 22s;
+}
+
+.nv-ambient-orb--2 {
+    width: 360px;
+    height: 360px;
+    top: 35%;
+    right: -100px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.28) 0%, transparent 70%);
+    animation-duration: 26s;
+    animation-delay: -4s;
+}
+
+.nv-ambient-orb--3 {
+    width: 300px;
+    height: 300px;
+    bottom: 8%;
+    left: 28%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.22) 0%, transparent 70%);
+    animation-duration: 20s;
+    animation-delay: -8s;
+}
+
+@keyframes nv-orb-float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(24px, -18px) scale(1.05); }
+    66% { transform: translate(-16px, 12px) scale(0.96); }
+}
+
+body.nv-motion-on > header {
+    position: relative;
+    z-index: 1040;
+}
+
+body.nv-motion-on > main,
+body.nv-motion-on > nav.mobile-fixed-footer {
+    position: relative;
+    z-index: 1;
+}
+
+/* Header glass + brand glow */
+.header-top {
+    background: rgba(255, 255, 255, 0.82) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(225, 228, 232, 0.9);
+    transition: box-shadow 0.3s var(--nv-motion-ease);
+}
+
+body.nv-motion-on .header-top {
+    box-shadow: 0 4px 24px rgba(79, 70, 229, 0.06);
+}
+
+.brand-logo a i {
+    animation: nv-brand-pulse 3.5s ease-in-out infinite;
+}
+
+@keyframes nv-brand-pulse {
+    0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 0 transparent); }
+    50% { transform: scale(1.08) rotate(-6deg); filter: drop-shadow(0 0 8px rgba(79, 70, 229, 0.35)); }
+}
+
+.nv-main-nav > li > a {
+    transition: background 0.2s var(--nv-motion-ease), color 0.2s, transform 0.2s var(--nv-motion-ease);
+}
+
+.nv-main-nav > li > a:hover {
+    transform: translateY(-1px);
+}
+
+.nv-main-nav > li.active > a {
+    box-shadow: inset 0 -2px 0 var(--nv-primary);
+}
+
+/* Cards — depth + hover */
+.card-component {
+    transition:
+        transform 0.25s var(--nv-motion-ease),
+        box-shadow 0.25s var(--nv-motion-ease),
+        border-color 0.25s;
+}
+
+body.nv-motion-on .card-component:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+    border-color: rgba(79, 70, 229, 0.12);
+}
+
+/* Animated profile banner */
+.profile-banner-box {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 45%, #06b6d4 100%);
+    background-size: 200% 200%;
+    animation: nv-gradient-shift 8s ease infinite;
+}
+
+.profile-banner-box::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 40%);
+    animation: nv-shimmer-pass 6s linear infinite;
+}
+
+@keyframes nv-gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes nv-shimmer-pass {
+    0% { opacity: 0.6; transform: translateX(-8%); }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; transform: translateX(8%); }
+}
+
+/* Feed hero graphic strip */
+.nv-feed-hero {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(79, 70, 229, 0.12);
+    background: linear-gradient(125deg, rgba(79, 70, 229, 0.08) 0%, #fff 42%, rgba(6, 182, 212, 0.06) 100%);
+    padding: 16px 18px;
+}
+
+.nv-feed-hero-glow {
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79, 70, 229, 0.18) 0%, transparent 68%);
+    animation: nv-orb-float 14s var(--nv-motion-ease) infinite;
+    pointer-events: none;
+}
+
+.nv-feed-hero-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 1;
+}
+
+.nv-feed-hero-icons {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.nv-feed-hero-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--nv-primary);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(79, 70, 229, 0.15);
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.1);
+    animation: nv-icon-bob 4s ease-in-out infinite;
+}
+
+.nv-feed-hero-icon:nth-child(2) {
+    animation-delay: -1.2s;
+    color: #0891b2;
+}
+
+.nv-feed-hero-icon:nth-child(3) {
+    animation-delay: -2.4s;
+    color: #7c3aed;
+}
+
+@keyframes nv-icon-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.nv-feed-hero-kicker {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.55px;
+    text-transform: uppercase;
+    color: var(--nv-primary);
+    margin-bottom: 2px;
+}
+
+.nv-feed-hero-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--nv-text-dark);
+    margin-bottom: 2px;
+}
+
+.nv-feed-hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.nv-feed-hero-stat {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--nv-text-muted);
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid var(--nv-border);
+    padding: 4px 8px;
+    border-radius: 999px;
+}
+
+.nv-feed-hero-stat strong {
+    color: var(--nv-primary);
+}
+
+/* Scroll / entrance animations */
+.nv-reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+        opacity var(--nv-motion-duration) var(--nv-motion-ease),
+        transform var(--nv-motion-duration) var(--nv-motion-ease);
+}
+
+/* Hidden route views must not keep children invisible when shown */
+.nv-routing-view.d-none .nv-reveal {
+    opacity: 1;
+    transform: none;
+}
+
+.nv-reveal.nv-revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.nv-stagger-item {
+    opacity: 0;
+    transform: translateY(12px) scale(0.99);
+    animation: nv-stagger-in 0.5s var(--nv-motion-ease) forwards;
+}
+
+@keyframes nv-stagger-in {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Route view transition */
+.nv-routing-view.nv-view-enter {
+    animation: nv-view-enter 0.42s var(--nv-motion-ease) both;
+}
+
+@keyframes nv-view-enter {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Interactive chips & rows */
+.trending-keyword-row,
+.recent-sale-row,
+.nv-sponsor-card,
+.domain-chip,
+.post-action-btn,
+.identity-badge {
+    transition: transform 0.2s var(--nv-motion-ease), box-shadow 0.2s, border-color 0.2s;
+}
+
+body.nv-motion-on .trending-keyword-row:hover,
+body.nv-motion-on .recent-sale-row:hover {
+    transform: translateX(3px);
+}
+
+body.nv-motion-on .domain-chip:hover {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.12);
+}
+
+.post-action-btn:hover {
+    transform: scale(1.04);
+    color: var(--nv-primary) !important;
+}
+
+/* Publish button shine */
+.nv-btn-shine {
+    position: relative;
+    overflow: hidden;
+}
+
+.nv-btn-shine::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    animation: nv-btn-shine 4s ease-in-out infinite;
+}
+
+@keyframes nv-btn-shine {
+    0%, 70%, 100% { left: -120%; }
+    85% { left: 140%; }
+}
+
+/* Notification dot pulse */
+.notification-dot {
+    animation: nv-dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes nv-dot-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.25); opacity: 0.85; }
+}
+
+/* Sponsor shimmer edge */
+.nv-sponsor-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.65) 50%, transparent 70%);
+    background-size: 200% 100%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: nv-edge-shimmer 5s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes nv-edge-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.nv-sponsor-glass {
+    position: relative;
+}
+
+/* Mobile nav slide */
+.nv-mobile-nav.open {
+    animation: nv-slide-down 0.28s var(--nv-motion-ease) both;
+}
+
+@keyframes nv-slide-down {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .nv-ambient-orb,
+    .profile-banner-box,
+    .profile-banner-box::after,
+    .brand-logo a i,
+    .nv-feed-hero-icon,
+    .nv-feed-hero-glow,
+    .nv-btn-shine::after,
+    .notification-dot,
+    .nv-sponsor-glass::before {
+        animation: none !important;
+    }
+
+    .nv-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .nv-stagger-item {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+
+    .card-component:hover,
+    .trending-keyword-row:hover,
+    .recent-sale-row:hover {
+        transform: none;
+    }
+}

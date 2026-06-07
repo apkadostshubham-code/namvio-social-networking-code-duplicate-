@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Namvio Social — Connect with domain investors, brokers, and registrars. Share deals, showcase portfolios, and climb the reputation ladder.">
+    <title>Namvio Social — Domain Investor Network</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/motion-graphics.css?v=20260627">
+    <link rel="stylesheet" href="assets/css/custom-style.css?v=20260627">
+</head>
+<body>
+
+    <header class="header-top bg-white">
+        <div class="container-fluid nv-header-inner px-3 px-lg-4">
+            <div class="nv-header-row">
+                <div class="brand-logo flex-shrink-0">
+                    <a href="#" onclick="routeView('feed', this); return false;">
+                        <i class="fa-solid fa-cube"></i><span class="brand-text">NAMVIO</span>
+                    </a>
+                </div>
+
+                <nav class="nv-main-nav-wrap d-none d-lg-flex" aria-label="Main">
+                    <ul class="nv-main-nav list-unstyled mb-0" id="header-main-nav">
+                        <li class="active" data-nav="feed">
+                            <a href="#" onclick="routeView('feed', this); return false;">
+                                <i class="fa-solid fa-house"></i><span>Home</span>
+                            </a>
+                        </li>
+                        <li data-nav="marketplace">
+                            <a href="#" onclick="routeView('marketplace', this); return false;">
+                                <i class="fa-solid fa-store"></i><span>Listings</span>
+                            </a>
+                        </li>
+                        <li data-nav="hof">
+                            <a href="#" onclick="routeView('hof', this); return false;">
+                                <i class="fa-solid fa-crown"></i><span>Hall of Fame</span>
+                            </a>
+                        </li>
+                        <li data-nav="networking">
+                            <a href="#" onclick="routeView('networking', this); return false;">
+                                <i class="fa-solid fa-handshake"></i><span>Networking</span>
+                            </a>
+                        </li>
+                        <li data-nav="subscription">
+                            <a href="#" onclick="routeView('subscription', this); return false;">
+                                <i class="fa-solid fa-credit-card"></i><span>Plans</span>
+                            </a>
+                        </li>
+                        <li data-nav="admin" class="d-none" data-admin-only>
+                            <a href="#" onclick="routeView('admin', this); return false;">
+                                <i class="fa-solid fa-shield-halved"></i><span>Moderation</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="nv-header-actions flex-shrink-0">
+                    <div class="top-search-box position-relative d-none d-xl-block">
+                        <input type="text" id="global-search" placeholder="Search…"
+                               class="form-control rounded-pill pl-3 pr-4"
+                               onkeyup="filterFeedSearch(this.value)" onkeydown="handleSearchKey(event)">
+                        <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    </div>
+                    <button type="button" class="nv-icon-btn d-none d-md-inline-flex" title="Notifications">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="notification-dot"></span>
+                    </button>
+                    <button type="button" class="nv-icon-btn d-none d-md-inline-flex" title="Settings"
+                            onclick="routeView('settings', this); return false;">
+                        <i class="fa-solid fa-gear"></i>
+                    </button>
+                    <button type="button" class="nv-avatar-btn profile-thumb rounded-circle overflow-hidden border"
+                            onclick="routeView('identity', this); return false;" title="Profile">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120" alt="You">
+                    </button>
+                    <button type="button" class="nv-mobile-menu-btn d-lg-none" onclick="toggleMobileNav()" aria-label="Menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="nv-mobile-nav d-lg-none" id="nv-mobile-nav">
+            <div id="nv-mobile-nav-host"></div>
+        </div>
+    </header>
+
+    <main class="py-4" id="nv-main">
+        <div class="container nv-app-layout" id="nv-app-layout">
+            <div class="row">
+
+                <!-- Left sidebar -->
+                <div class="col-lg-3 desktop-sidebar nv-left-sidebar">
+                    <div class="card-component">
+                        <div class="profile-banner-box"></div>
+                        <div class="profile-desc-wrapper text-center">
+                            <div class="profile-thumb rounded-circle overflow-hidden mx-auto mb-2">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120" alt="">
+                            </div>
+                            <h6 class="font-weight-bold text-dark mb-0" id="sidebar-display-name">Shubham</h6>
+                            <p class="text-muted small mb-2" id="sidebar-handle">@apkadostshubham</p>
+                            <div id="sidebar-rep-line" class="mb-2"></div>
+                            <span class="identity-badge badge-elite"><i class="fa-solid fa-gem mr-1"></i> Alpha Founder</span>
+                        </div>
+                    </div>
+
+                    <div class="card-component p-3 nv-side-nav-card" id="nv-sidebar-nav-host">
+                        <p class="nv-side-nav-label">Menu</p>
+                        <ul class="nav flex-column side-menu-list" id="sidebar-main-nav">
+                            <li class="active" id="sidemenu-feed"><a href="#" onclick="routeView('feed', this); return false;"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
+                            <li id="sidemenu-marketplace"><a href="#" onclick="routeView('marketplace', this); return false;"><i class="fa-solid fa-store"></i><span>Listings</span></a></li>
+                            <li id="sidemenu-market-pulse"><a href="#" onclick="routeView('market-pulse', this); return false;"><i class="fa-solid fa-chart-line"></i><span>Market Pulse</span></a></li>
+                            <li id="sidemenu-hof"><a href="#" onclick="routeView('hof', this); return false;"><i class="fa-solid fa-crown"></i><span>Hall of Fame</span></a></li>
+                            <li id="sidemenu-networking"><a href="#" onclick="routeView('networking', this); return false;"><i class="fa-solid fa-handshake"></i><span>Networking</span></a></li>
+                            <li id="sidemenu-subscription"><a href="#" onclick="routeView('subscription', this); return false;"><i class="fa-solid fa-credit-card"></i><span>Plans</span></a></li>
+                        </ul>
+
+                        <p class="nv-side-nav-label mt-3">More</p>
+                        <ul class="nav flex-column side-menu-list">
+                            <li id="sidemenu-blogs"><a href="#" onclick="routeView('blogs', this); return false;"><i class="fa-solid fa-blog"></i><span>Blogs</span></a></li>
+                            <li id="sidemenu-admin" class="d-none" data-admin-only><a href="#" onclick="routeView('admin', this); return false;"><i class="fa-solid fa-shield-halved"></i><span>Moderation</span></a></li>
+                        </ul>
+
+                        <p class="nv-side-nav-label mt-3">Account</p>
+                        <ul class="nav flex-column side-menu-list">
+                            <li id="sidemenu-identity"><a href="#" onclick="routeView('identity', this); return false;"><i class="fa-solid fa-id-card"></i><span>Profile</span></a></li>
+                            <li id="sidemenu-settings"><a href="#" onclick="routeView('settings', this); return false;"><i class="fa-solid fa-gear"></i><span>Settings</span></a></li>
+                        </ul>
+
+                        <p class="nv-side-nav-label mt-3">Legal</p>
+                        <ul class="nav flex-column side-menu-list">
+                            <li id="sidemenu-legal"><a href="#" onclick="routeView('legal', this); return false;"><i class="fa-solid fa-balance-scale"></i><span>Legal Center</span></a></li>
+                        </ul>
+
+
+                    </div>
+                </div>
+
+                <!-- Main viewport -->
+                <div class="col-lg-6 col-md-12" id="dynamic-viewport-container">
+
+                    <div id="view-feed" class="nv-routing-view">
+                        <div class="card-component p-3">
+                            <div class="d-flex">
+                                <div class="profile-thumb rounded-circle overflow-hidden mr-3" style="width:40px;height:40px;flex-shrink:0;">
+                                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120" alt="">
+                                </div>
+                                <div class="w-100">
+                                    <textarea class="share-text-field" id="feed-post-textarea" rows="2"
+                                              placeholder="Share domain sales, appraisals, or market intel… (e.g. acquired Startup.io)"></textarea>
+                                    <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap">
+                                        <span class="text-muted small"><i class="fa-solid fa-globe mr-1"></i> Public · Domain community</span>
+                                        <button class="btn btn-primary btn-sm px-4 font-weight-bold"
+                                                style="background:var(--nv-primary);border-color:var(--nv-primary);border-radius:20px;"
+                                                onclick="executePostPublish()">Publish</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-warning border-0 shadow-sm d-none mb-3" id="ban-alarm-banner">
+                            <i class="fa-solid fa-triangle-exclamation mr-2"></i>
+                            <strong>Shadow ban active:</strong> Your posts stay on your timeline only until moderation lifts the flag.
+                        </div>
+
+                        <div class="d-lg-none mb-3">
+                            <div class="card-component p-3">
+                                <p class="text-uppercase font-weight-bold text-muted small mb-1" style="letter-spacing:0.5px;">Trending Keywords</p>
+                                <p class="text-muted mb-2" style="font-size:11px;">Tap a keyword to filter the feed.</p>
+                                <div id="trending-keywords-mobile"></div>
+                            </div>
+                        </div>
+
+                        <div id="feed-pipeline-cards"></div>
+                    </div>
+
+                    <div id="view-identity" class="nv-routing-view d-none nv-profile-view">
+                        <div class="card-component p-0 mb-3 overflow-hidden profile-hero-card">
+                            <div class="profile-hero-cover" aria-hidden="true"></div>
+                            <div class="profile-hero-body px-4 pb-4">
+                                <div id="identity-hof-wrap" class="profile-hof-slot"></div>
+                                <div class="profile-hero-head">
+                                    <div class="profile-hero-avatar-wrap">
+                                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=160" alt=""
+                                             loading="lazy" decoding="async" width="96" height="96" id="identity-avatar-img">
+                                    </div>
+                                    <div class="profile-hero-meta">
+                                        <p class="profile-hero-kicker mb-1"><i class="fa-solid fa-id-card mr-1"></i> Domain Investor Identity</p>
+                                        <div class="d-flex align-items-center flex-wrap">
+                                            <h4 class="font-weight-bold text-dark mb-0 mr-2" id="identity-display-name">Shubham</h4>
+                                            <span id="identity-verify-badges" class="profile-verify-row"></span>
+                                        </div>
+                                        <p class="text-muted mb-0 mt-1" id="identity-handle-box">@apkadostshubham</p>
+                                        <div class="mt-2" id="identity-experience-line"></div>
+                                    </div>
+                                </div>
+                                <p class="profile-hero-bio text-muted small mb-2 identity-bio-wrap" id="identity-bio-wrap"><span id="identity-bio-box"></span></p>
+                                <div class="profile-member-chips" id="identity-member-chips"></div>
+                                <p class="text-muted small mb-0 profile-hero-email"><i class="fa-solid fa-envelope mr-1"></i><span id="identity-email-box"></span></p>
+                                <div class="d-flex flex-wrap align-items-center justify-content-between mt-3" style="gap:10px;">
+                                    <div id="identity-social-wrap"></div>
+                                    <div id="identity-actions-wrap" class="profile-actions-inline"></div>
+                                </div>
+                                <div id="identity-pinned-wrap"></div>
+                                <div id="identity-founder-pass-wrap" class="mt-3"></div>
+                                <div class="profile-hero-metrics" id="identity-hero-metrics"></div>
+                            </div>
+                        </div>
+
+                        <div class="row profile-dash-row">
+                            <div class="col-lg-7 mb-3 mb-lg-0">
+                                <div class="card-component p-4 h-100 profile-insight-card">
+                                    <div id="identity-reputation-block" class="mb-3"></div>
+                                    <div id="identity-trust-wrap"></div>
+                                    <div class="mt-2" id="identity-risk-wrap"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 mb-3 mb-lg-0">
+                                <div class="card-component p-4 h-100" id="identity-completion-wrap"></div>
+                            </div>
+                        </div>
+
+                        <div class="card-component p-4 mb-3">
+                            <h6 class="font-weight-bold text-muted text-uppercase small mb-3"><i class="fa-solid fa-chart-simple mr-1 text-primary"></i> Activity</h6>
+                            <div class="profile-stats-grid" id="identity-stats-grid"></div>
+                        </div>
+
+                        <div class="row profile-dash-row">
+                            <div class="col-lg-7 mb-3 mb-lg-0">
+                                <div class="card-component p-4 h-100 profile-lazy-section" data-profile-lazy id="profile-section-chart">
+                                    <h6 class="font-weight-bold text-muted text-uppercase small mb-2"><i class="fa-solid fa-chart-line mr-1 text-primary"></i> Reputation growth</h6>
+                                    <p class="text-muted small mb-3">Monthly trend</p>
+                                    <div id="identity-rep-chart"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 mb-3 mb-lg-0">
+                                <div class="card-component p-4 h-100 profile-featured-card">
+                                    <h6 class="font-weight-bold text-muted text-uppercase small mb-3"><i class="fa-solid fa-tag mr-1 text-success"></i> Featured sale</h6>
+                                    <div id="identity-featured-sale-wrap"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-component p-4 mb-3">
+                            <h6 class="font-weight-bold text-muted text-uppercase small mb-3"><i class="fa-solid fa-certificate mr-1 text-primary"></i> Verified badges</h6>
+                            <div class="d-flex flex-wrap profile-badge-row" id="badge-collection-box"></div>
+                        </div>
+
+                        <div class="card-component p-4 profile-tabs-card">
+                            <ul class="nav nav-pills profile-tab-nav mb-3 flex-wrap" role="tablist">
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn active" data-profile-tab="posts" onclick="NamvioProfile.switchTab('posts')"><i class="fa-solid fa-table-cells mr-1"></i>Posts</button></li>
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn" data-profile-tab="media" onclick="NamvioProfile.switchTab('media')"><i class="fa-solid fa-image mr-1"></i>Media</button></li>
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn" data-profile-tab="achievements" onclick="NamvioProfile.switchTab('achievements')"><i class="fa-solid fa-trophy mr-1"></i>Achievements</button></li>
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn" data-profile-tab="sales" onclick="NamvioProfile.switchTab('sales')"><i class="fa-solid fa-sack-dollar mr-1"></i>Featured Sales</button></li>
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn" data-profile-tab="about" onclick="NamvioProfile.switchTab('about')"><i class="fa-solid fa-circle-info mr-1"></i>About</button></li>
+                            </ul>
+                            <div class="profile-tab-pane profile-tab-pane-animated" data-profile-pane="posts"></div>
+                            <div class="profile-tab-pane d-none" data-profile-pane="media"></div>
+                            <div class="profile-tab-pane d-none" data-profile-pane="achievements"></div>
+                            <div class="profile-tab-pane d-none" data-profile-pane="sales"></div>
+                            <div class="profile-tab-pane d-none" data-profile-pane="about"></div>
+                            <div id="identity-portfolio-wrap" class="d-none" aria-hidden="true"></div>
+                        </div>
+                    </div>
+
+                    <div id="view-market-pulse" class="nv-routing-view d-none nv-market-pulse-view">
+                        <div class="mkt-page-hero card-component mb-3">
+                            <div class="mkt-page-hero-glow" aria-hidden="true"></div>
+                            <div class="mkt-page-hero-mesh" aria-hidden="true">
+                                <span class="mkt-hero-dot mkt-hero-dot--1"></span>
+                                <span class="mkt-hero-dot mkt-hero-dot--2"></span>
+                                <span class="mkt-hero-dot mkt-hero-dot--3"></span>
+                            </div>
+                            <div class="mkt-page-hero-body">
+                                <div class="mkt-page-hero-icon"><i class="fa-solid fa-chart-line"></i></div>
+                                <div class="flex-grow-1 min-width-0">
+                                    <p class="mkt-page-hero-kicker mb-0">Domain market intel</p>
+                                    <h5 class="mkt-page-hero-title mb-1">Market Pulse</h5>
+                                    <p class="mkt-page-hero-desc mb-0">Trending keywords, NameBio-style sales, sponsors, community stats &amp; who to follow — your right-rail insights in one place.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mkt-kpi-row mb-3">
+                            <div class="col-md-4 mb-3 mb-md-0">
+                                <div class="mkt-kpi-card">
+                                    <span class="mkt-kpi-value">12,840</span>
+                                    <span class="mkt-kpi-label"><i class="fa-solid fa-users mr-1"></i>Active investors</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3 mb-md-0">
+                                <div class="mkt-kpi-card mkt-kpi-card--primary">
+                                    <span class="mkt-kpi-value">1,247</span>
+                                    <span class="mkt-kpi-label"><i class="fa-solid fa-store mr-1"></i>Listings this week</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mkt-kpi-card mkt-kpi-card--success">
+                                    <span class="mkt-kpi-value">$4.2M</span>
+                                    <span class="mkt-kpi-label"><i class="fa-solid fa-shield-halved mr-1"></i>Escrow volume (30d)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="card-component p-3 mb-3 mkt-section-card">
+                                    <div class="d-flex justify-content-between align-items-start flex-wrap mb-2" style="gap:8px;">
+                                        <div>
+                                            <p class="text-uppercase font-weight-bold text-muted small mb-1" style="letter-spacing:0.5px;">Trending Keywords</p>
+                                            <p class="text-muted mb-0" style="font-size:12px;line-height:1.45;">Top keyword domains by sales volume — Sedo-style market pulse (demo data).</p>
+                                        </div>
+                                        <span class="mkt-section-badge"><i class="fa-solid fa-bolt mr-1"></i>Live demo</span>
+                                    </div>
+                                    <div id="market-pulse-trending-box" class="mkt-trending-grid" aria-live="polite">
+                                        <p class="text-muted small mb-0 py-1">Loading trending keywords…</p>
+                                    </div>
+                                </div>
+
+                                <div class="card-component p-3 mb-3 mkt-section-card">
+                                    <div class="d-flex justify-content-between align-items-start flex-wrap mb-2" style="gap:8px;">
+                                        <div>
+                                            <p class="text-uppercase font-weight-bold text-muted small mb-1" style="letter-spacing:0.5px;">Domain Sales</p>
+                                            <p class="text-muted mb-0" style="font-size:12px;line-height:1.45;">NameBio-style top sales — <a href="https://namebio.com/top-100-domain-name-sales-all-time" target="_blank" rel="noopener noreferrer">reference data</a> · <a href="#" class="font-weight-bold" onclick="openDomainSalesFullPage(); return false;">Full analytics</a></p>
+                                        </div>
+                                    </div>
+                                    <label class="domain-sales-year-label" for="market-pulse-sales-year-select">Period</label>
+                                    <select id="market-pulse-sales-year-select" class="form-control form-control-sm domain-sales-year-select mb-2"
+                                            onchange="onDomainSalesYearChange(this.value)" aria-label="Filter domain sales by year"></select>
+                                    <div id="market-pulse-sales-box" aria-live="polite">
+                                        <p class="text-muted small mb-0 py-1">Loading domain sales…</p>
+                                    </div>
+                                    <p class="text-muted mb-0 mt-2" id="market-pulse-sales-hint" style="font-size:10px;"></p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="card-component p-0 mb-3 mkt-sponsor-shell">
+                                    <div id="nv-network-sponsors-market-pulse" class="p-3"></div>
+                                </div>
+
+                                <div class="card-component p-3 upgrade-cta-card mb-3">
+                                    <p class="text-uppercase font-weight-bold text-primary small mb-2" style="letter-spacing:0.5px;">Go Pro</p>
+                                    <p class="small text-muted mb-3">Boost listings, unlock broker DMs, and get verified seller badges.</p>
+                                    <button class="btn btn-primary btn-sm btn-block font-weight-bold"
+                                            style="background:var(--nv-primary);border-color:var(--nv-primary);"
+                                            onclick="routeView('subscription', this); return false;">
+                                        View plans
+                                    </button>
+                                    <p class="text-muted mb-0 mt-2 text-center" style="font-size:11px;" id="market-pulse-plan-label">Plan: Free</p>
+                                </div>
+
+                                <div class="card-component p-3 mkt-follow-card">
+                                    <p class="text-uppercase font-weight-bold text-muted small mb-2" style="letter-spacing:0.5px;">Who to follow</p>
+                                    <div id="market-pulse-follow-box"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="view-hof" class="nv-routing-view d-none">
+                        <div class="card-component p-4">
+                            <div class="text-center mb-4">
+                                <h4 class="font-weight-bold text-dark mb-1"><i class="fa-solid fa-crown text-warning mr-2"></i>Hall of Fame</h4>
+                                <p class="text-muted small">Top domain community members by reputation and verified deal volume.</p>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-borderless align-middle mb-0">
+                                    <thead>
+                                        <tr class="border-bottom text-muted small text-uppercase font-weight-bold">
+                                            <th>Rank</th>
+                                            <th>Member</th>
+                                            <th>Role</th>
+                                            <th>Tier</th>
+                                            <th class="text-right">Reputation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="hof-table-body">
+                                        <tr class="border-bottom">
+                                            <td class="font-weight-bold text-primary" style="font-size: 15px;">#01</td>
+                                            <td><span class="font-weight-bold text-dark">Rahul Sharma</span></td>
+                                            <td><span class="identity-badge badge-broker">Broker</span></td>
+                                            <td class="text-right font-weight-bold text-dark">14,920</td>
+                                        </tr>
+                                        <tr class="border-bottom">
+                                            <td class="font-weight-bold text-primary" style="font-size: 15px;">#02</td>
+                                            <td><span class="font-weight-bold text-dark">Alex Mercer</span></td>
+                                            <td><span class="identity-badge badge-elite">Founder</span></td>
+                                            <td class="text-right font-weight-bold text-dark">9,850</td>
+                                        </tr>
+                                        <tr class="border-bottom">
+                                            <td class="font-weight-bold text-primary" style="font-size: 15px;">#03</td>
+                                            <td><span class="font-weight-bold text-dark">Maya Chen</span></td>
+                                            <td><span class="identity-badge badge-investor">Investor</span></td>
+                                            <td class="text-right font-weight-bold text-dark">8,720</td>
+                                        </tr>
+                                        <tr class="border-bottom">
+                                            <td class="font-weight-bold text-primary" style="font-size: 15px;">#04</td>
+                                            <td><span class="font-weight-bold text-dark">James Okonkwo</span></td>
+                                            <td><span class="identity-badge badge-registrar">Registrar</span></td>
+                                            <td class="text-right font-weight-bold text-dark">8,100</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-primary" style="font-size: 15px;">#05</td>
+                                            <td><span class="font-weight-bold text-dark">Sofia Petrov</span></td>
+                                            <td><span class="identity-badge badge-investor">Investor</span></td>
+                                            <td class="text-right font-weight-bold text-dark">7,650</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="view-networking" class="nv-routing-view d-none">
+                        <div class="card-component p-4 mb-3">
+                            <h5 class="font-weight-bold text-dark mb-1">
+                                <i class="fa-solid fa-handshake mr-2 text-primary"></i>Networking
+                            </h5>
+                            <p class="text-muted small mb-0">Connect with investors, brokers, and registrars. Grow your domain circle.</p>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <div class="network-stat-card">
+                                    <span class="network-stat-value" id="net-stat-connections">128</span>
+                                    <span class="network-stat-label">Connections</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="network-stat-card">
+                                    <span class="network-stat-value" id="net-stat-pending">6</span>
+                                    <span class="network-stat-label">Pending invites</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="nv-network-sponsors-main" class="mb-3"></div>
+
+                        <div class="row net-kpi-row mb-3" id="net-kpi-row"></div>
+                        <div class="card-component p-3 mb-3">
+                            <div id="net-filters" class="net-filters mb-3"></div>
+                        </div>
+
+                        <div class="card-component p-4 mb-3 nv-invite-card">
+                            <div class="d-flex justify-content-between align-items-start flex-wrap" style="gap:12px;">
+                                <div>
+                                    <h6 class="font-weight-bold text-dark mb-1"><i class="fa-solid fa-user-plus mr-2 text-primary"></i>Invite to Namvio</h6>
+                                    <p class="text-muted small mb-2">Share your invite on X, LinkedIn, WhatsApp, Telegram &amp; more. New members can join with your code.</p>
+                                    <p class="mb-0 small text-muted">Your invite code</p>
+                                    <p class="nv-invite-code mb-0" id="nv-invite-code-display">—</p>
+                                </div>
+                                <button type="button" class="btn btn-primary btn-sm font-weight-bold px-4"
+                                        style="background:var(--nv-primary);border-color:var(--nv-primary);"
+                                        onclick="NamvioShare.openInvitation(); return false;">
+                                    <i class="fa-solid fa-share-nodes mr-1"></i> Share invitation
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-component p-4 mb-3">
+                            <div class="d-flex justify-content-between align-items-center flex-wrap mb-3" style="gap:8px;">
+                                <h6 class="font-weight-bold text-dark mb-0">Suggested connections</h6>
+                                <input type="text" class="form-control form-control-sm rounded-pill" id="networking-search"
+                                       placeholder="Search members…" style="max-width:220px;"
+                                       oninput="filterNetworkingMembers(this.value)">
+                            </div>
+                            <div id="networking-members-grid"></div>
+                        </div>
+
+                        <div class="card-component p-4 mb-3">
+                            <h6 class="font-weight-bold text-dark mb-3"><i class="fa-solid fa-calendar-days mr-2 text-primary"></i>Upcoming events</h6>
+                            <div id="networking-events-list"></div>
+                        </div>
+                    </div>
+
+                    <div id="view-marketplace" class="nv-routing-view d-none nv-marketplace-view">
+                        <div class="mp-page-hero card-component mb-3">
+                            <div class="mp-page-hero-glow" aria-hidden="true"></div>
+                            <div class="mp-page-hero-body">
+                                <div class="mp-page-hero-icon"><i class="fa-solid fa-store"></i></div>
+                                <div>
+                                    <p class="mp-page-hero-kicker mb-0">Premium names</p>
+                                    <h5 class="mp-page-hero-title mb-1">Featured Listings</h5>
+                                    <p class="mp-page-hero-desc mb-0">Buy, sell &amp; negotiate escrow-ready domains with verified members.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mp-kpi-row" id="mp-kpi-row"></div>
+                        <div class="card-component p-3 mb-3">
+                            <div id="mp-filters" class="mp-filters mb-3"></div>
+                            <div class="mp-search-wrap">
+                                <i class="fa-solid fa-magnifying-glass mp-search-icon"></i>
+                                <input type="search" class="form-control form-control-sm mp-search-input" id="mp-search-input" placeholder="Search domain, seller or niche…" autocomplete="off">
+                            </div>
+                        </div>
+                        <div id="mp-listings-grid"></div>
+                    </div>
+
+                    <div id="view-subscription" class="nv-routing-view d-none">
+                        <div class="subscription-hero">
+                            <h4><i class="fa-solid fa-layer-group mr-2"></i>Namvio Subscriptions</h4>
+                            <p>Unlock listing boosts, broker DMs, appraisal tools, and verified badges for the domain community.</p>
+                        </div>
+
+                        <div id="current-plan-banner" class="current-plan-banner">
+                            <div class="d-flex justify-content-between align-items-start flex-wrap">
+                                <div>
+                                    <span class="text-uppercase text-muted small font-weight-bold d-block mb-1">Your plan</span>
+                                    <span class="font-weight-bold text-dark h5 mb-0" id="sub-current-plan-name">—</span>
+                                    <span class="text-muted small d-block mt-1" id="sub-current-plan-meta">—</span>
+                                </div>
+                                <span class="subscription-status-pill status-active" id="sub-status-pill">Active</span>
+                            </div>
+                            <div class="mt-3 d-flex flex-wrap" style="gap:8px;">
+                                <button class="btn btn-sm btn-outline-danger font-weight-bold" id="btn-cancel-sub" onclick="cancelSubscription()">Cancel subscription</button>
+                                <button class="btn btn-sm btn-light border font-weight-bold" onclick="routeView('subscription', this); initSubscription()">Refresh</button>
+                            </div>
+                        </div>
+
+                        <div class="text-center mb-3">
+                            <p class="text-muted small mb-0" id="billing-cycle-notice">
+                                <i class="fa-solid fa-calendar-check mr-1"></i> All plans are billed <strong>yearly</strong> (one payment per year)
+                            </p>
+                        </div>
+
+                        <div class="row" id="subscription-plans-grid">
+                            <div class="col-md-6 mb-3" data-plan-id="free" data-monthly="0" data-yearly="0">
+                                <div class="plan-card is-current" id="plan-card-free">
+                                    <p class="plan-name">Community</p>
+                                    <p class="text-muted small mb-2">Join the domain feed</p>
+                                    <div class="plan-price">$0</div>
+                                    <p class="plan-equiv text-muted small mb-0" style="display:none;"></p>
+                                    <ul class="plan-features">
+                                        <li><i class="fa-solid fa-check"></i>Public community feed</li>
+                                        <li><i class="fa-solid fa-check"></i>Basic profile &amp; reputation</li>
+                                        <li><i class="fa-solid fa-check"></i>3 marketplace listings / mo</li>
+                                    </ul>
+                                    <button type="button" class="btn btn-block btn-sm btn-success font-weight-bold plan-cta" data-plan-cta="free" disabled>Current plan</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3" data-plan-id="investor" data-monthly="19" data-yearly="190">
+                                <div class="plan-card" id="plan-card-investor">
+                                    <p class="plan-name">Investor Pro</p>
+                                    <p class="text-muted small mb-2">For active portfolio builders</p>
+                                    <div class="plan-price">$190<span class="period">/yr</span></div>
+                                    <p class="plan-equiv text-muted small mb-0">About $15.83/mo billed annually</p>
+                                    <ul class="plan-features">
+                                        <li><i class="fa-solid fa-check"></i>Unlimited feed posts</li>
+                                        <li><i class="fa-solid fa-check"></i>15 marketplace listings / mo</li>
+                                        <li><i class="fa-solid fa-check"></i>Domain appraisal assistant</li>
+                                    </ul>
+                                    <button type="button" class="btn btn-primary btn-block btn-sm font-weight-bold plan-cta" data-plan-cta="investor" style="background:var(--nv-primary);border-color:var(--nv-primary);" onclick="subscribeToPlan('investor')">Subscribe</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3" data-plan-id="broker" data-monthly="49" data-yearly="490">
+                                <div class="plan-card is-featured" id="plan-card-broker">
+                                    <span class="plan-popular-tag">Most popular</span>
+                                    <p class="plan-name">Broker Plus</p>
+                                    <p class="text-muted small mb-2">Close deals faster</p>
+                                    <div class="plan-price">$490<span class="period">/yr</span></div>
+                                    <p class="plan-equiv text-muted small mb-0">About $40.83/mo billed annually</p>
+                                    <ul class="plan-features">
+                                        <li><i class="fa-solid fa-check"></i>Everything in Investor Pro</li>
+                                        <li><i class="fa-solid fa-check"></i>Unlimited listings + top pin</li>
+                                        <li><i class="fa-solid fa-check"></i>DM any member (escrow flag)</li>
+                                    </ul>
+                                    <button type="button" class="btn btn-primary btn-block btn-sm font-weight-bold plan-cta" data-plan-cta="broker" style="background:var(--nv-primary);border-color:var(--nv-primary);" onclick="subscribeToPlan('broker')">Subscribe</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3" data-plan-id="founder" data-monthly="99" data-yearly="990">
+                                <div class="plan-card" id="plan-card-founder">
+                                    <p class="plan-name">Founder Elite</p>
+                                    <p class="text-muted small mb-2">Limited — 1,000 seats</p>
+                                    <p class="text-warning small font-weight-bold mb-2"><i class="fa-solid fa-fire mr-1"></i>742 / 1,000 claimed</p>
+                                    <div class="plan-price">$990<span class="period">/yr</span></div>
+                                    <p class="plan-equiv text-muted small mb-0">About $82.50/mo billed annually</p>
+                                    <ul class="plan-features">
+                                        <li><i class="fa-solid fa-check"></i>Everything in Broker Plus</li>
+                                        <li><i class="fa-solid fa-check"></i>Alpha Founder badge</li>
+                                        <li><i class="fa-solid fa-check"></i>Private #DomainFlips lounge</li>
+                                    </ul>
+                                    <button type="button" class="btn btn-primary btn-block btn-sm font-weight-bold plan-cta" data-plan-cta="founder" style="background:var(--nv-primary);border-color:var(--nv-primary);" onclick="subscribeToPlan('founder')">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-component p-4 mt-2">
+                            <h6 class="font-weight-bold text-dark mb-3"><i class="fa-solid fa-receipt mr-2 text-primary"></i>Billing history</h6>
+                            <div class="table-responsive">
+                                <table class="table table-sm billing-history-table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Plan</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="billing-history-body">
+                                        <tr><td colspan="4" class="text-muted text-center py-3">No invoices yet — subscribe to a paid plan.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card-component p-4 border-0" style="background:#f8fafc;">
+                            <p class="text-muted small mb-0 text-center">
+                                <i class="fa-solid fa-lock mr-1"></i> Demo mode — payments simulated locally. Connect Stripe or Paddle for production checkout.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="view-settings" class="nv-routing-view d-none">
+                        <div class="card-component p-4">
+                            <h5 class="font-weight-bold text-dark mb-1">
+                                <i class="fa-solid fa-gear mr-2 text-primary"></i>User Settings
+                            </h5>
+                            <p class="text-muted small mb-4">Manage your account, privacy, and notification preferences.</p>
+
+                            <div class="settings-save-toast" id="settings-save-toast">
+                                <i class="fa-solid fa-circle-check mr-1"></i> Settings saved successfully.
+                            </div>
+
+                            <div class="nv-invite-card mb-4">
+                                <p class="settings-section-title mb-2"><i class="fa-solid fa-share-nodes mr-1"></i> Invite &amp; share</p>
+                                <p class="text-muted small mb-2">Share Namvio with investors on social platforms. Your personal invite code is included in the link.</p>
+                                <p class="mb-1 small text-muted">Invite code</p>
+                                <p class="nv-invite-code mb-3" id="settings-invite-code">—</p>
+                                <button type="button" class="btn btn-primary btn-sm font-weight-bold"
+                                        style="background:var(--nv-primary);border-color:var(--nv-primary);"
+                                        onclick="NamvioShare.openInvitation(); return false;">
+                                    <i class="fa-solid fa-user-plus mr-1"></i> Share invitation
+                                </button>
+                            </div>
+
+                            <form id="user-settings-form" onsubmit="saveUserSettings(event)">
+                                <p class="settings-section-title"><i class="fa-solid fa-user mr-1"></i> Account</p>
+
+                                <div class="form-group">
+                                    <label class="settings-label" for="set-display-name">Display name</label>
+                                    <input type="text" class="form-control form-control-sm" id="set-display-name" maxlength="60" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="settings-label" for="set-handle">Username</label>
+                                    <input type="text" class="form-control form-control-sm" id="set-handle" maxlength="32" placeholder="@yourname" required>
+                                    <p class="settings-hint mt-1">Shown on posts and your public profile.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="settings-label" for="set-email">Email</label>
+                                    <input type="email" class="form-control form-control-sm" id="set-email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="settings-label" for="set-bio">Bio</label>
+                                    <textarea class="form-control form-control-sm" id="set-bio" rows="2" maxlength="160" placeholder="Domain investor, broker, or registrar…"></textarea>
+                                    <p class="settings-hint mt-1"><span id="set-bio-count">0</span>/160 characters</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="settings-label" for="set-role">Community role</label>
+                                    <select class="form-control form-control-sm" id="set-role">
+                                        <option value="investor">Investor</option>
+                                        <option value="broker">Broker</option>
+                                        <option value="registrar">Registrar</option>
+                                        <option value="elite">Founder / Elite</option>
+                                    </select>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="settings-label" for="set-country">Country (optional)</label>
+                                        <input type="text" class="form-control form-control-sm" id="set-country" maxlength="60" placeholder="Germany">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="settings-label" for="set-experience-years">Years investing</label>
+                                        <input type="number" class="form-control form-control-sm" id="set-experience-years" min="0" max="50" placeholder="8">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="settings-label" for="set-portfolio-website">Portfolio website</label>
+                                    <input type="url" class="form-control form-control-sm" id="set-portfolio-website" placeholder="https://DomainEmpire.com">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="settings-label" for="set-linkedin">LinkedIn (optional)</label>
+                                        <input type="url" class="form-control form-control-sm" id="set-linkedin" placeholder="https://linkedin.com/in/…">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="settings-label" for="set-social-x">X / Twitter (optional)</label>
+                                        <input type="url" class="form-control form-control-sm" id="set-social-x" placeholder="https://x.com/…">
+                                    </div>
+                                </div>
+
+                                <hr class="my-4">
+                                <p class="settings-section-title"><i class="fa-solid fa-tag mr-1"></i> Featured sale</p>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="settings-label" for="set-sale-domain">Domain name</label>
+                                        <input type="text" class="form-control form-control-sm" id="set-sale-domain" placeholder="Example.com">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label class="settings-label" for="set-sale-price">Sale price ($)</label>
+                                        <input type="number" class="form-control form-control-sm" id="set-sale-price" min="0" placeholder="15000">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label class="settings-label" for="set-sale-year">Year</label>
+                                        <input type="number" class="form-control form-control-sm" id="set-sale-year" min="1995" max="2030" placeholder="2026">
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <label class="settings-label" for="set-sale-desc">Description</label>
+                                    <textarea class="form-control form-control-sm" id="set-sale-desc" rows="2" maxlength="300" placeholder="Brief story of the sale…"></textarea>
+                                </div>
+
+                                <hr class="my-4">
+
+                                <p class="settings-section-title"><i class="fa-solid fa-shield-halved mr-1"></i> Privacy</p>
+
+                                <div class="settings-row d-flex justify-content-between align-items-center">
+                                    <div class="pr-3">
+                                        <p class="settings-label mb-0">Public profile</p>
+                                        <p class="settings-hint">Anyone in the community can view your portfolio ID.</p>
+                                    </div>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="set-public-profile" checked>
+                                        <label class="custom-control-label" for="set-public-profile"></label>
+                                    </div>
+                                </div>
+                                <div class="settings-row d-flex justify-content-between align-items-center">
+                                    <div class="pr-3">
+                                        <p class="settings-label mb-0">Show email on profile</p>
+                                        <p class="settings-hint">Hide your email from other members.</p>
+                                    </div>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="set-show-email">
+                                        <label class="custom-control-label" for="set-show-email"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group mt-3 mb-0">
+                                    <label class="settings-label" for="set-who-can-see">Who can see your posts</label>
+                                    <select class="form-control form-control-sm" id="set-who-can-see">
+                                        <option value="public">Everyone (public feed)</option>
+                                        <option value="members">Members only</option>
+                                        <option value="followers">Followers only</option>
+                                    </select>
+                                </div>
+
+                                <hr class="my-4">
+
+                                <p class="settings-section-title"><i class="fa-solid fa-bell mr-1"></i> Notifications</p>
+
+                                <div class="settings-row d-flex justify-content-between align-items-center">
+                                    <div class="pr-3">
+                                        <p class="settings-label mb-0">Email notifications</p>
+                                        <p class="settings-hint">Account and security alerts.</p>
+                                    </div>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="set-notify-email" checked>
+                                        <label class="custom-control-label" for="set-notify-email"></label>
+                                    </div>
+                                </div>
+                                <div class="settings-row d-flex justify-content-between align-items-center">
+                                    <div class="pr-3">
+                                        <p class="settings-label mb-0">Deal &amp; listing alerts</p>
+                                        <p class="settings-hint">New offers on domains you follow.</p>
+                                    </div>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="set-notify-deals" checked>
+                                        <label class="custom-control-label" for="set-notify-deals"></label>
+                                    </div>
+                                </div>
+                                <div class="settings-row d-flex justify-content-between align-items-center">
+                                    <div class="pr-3">
+                                        <p class="settings-label mb-0">Mentions &amp; comments</p>
+                                        <p class="settings-hint">When someone tags you in a post.</p>
+                                    </div>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="set-notify-mentions" checked>
+                                        <label class="custom-control-label" for="set-notify-mentions"></label>
+                                    </div>
+                                </div>
+                                <div class="settings-row d-flex justify-content-between align-items-center">
+                                    <div class="pr-3">
+                                        <p class="settings-label mb-0">Weekly market digest</p>
+                                        <p class="settings-hint">Domain sales trends and #DomainFlips recap.</p>
+                                    </div>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="set-notify-digest">
+                                        <label class="custom-control-label" for="set-notify-digest"></label>
+                                    </div>
+                                </div>
+
+                                <hr class="my-4">
+
+                                <p class="settings-section-title"><i class="fa-solid fa-sliders mr-1"></i> Preferences</p>
+
+                                <div class="form-group">
+                                    <label class="settings-label" for="set-timezone">Timezone</label>
+                                    <select class="form-control form-control-sm" id="set-timezone">
+                                        <option value="Asia/Kolkata">Asia/Kolkata (IST)</option>
+                                        <option value="America/New_York">America/New York (EST)</option>
+                                        <option value="America/Los_Angeles">America/Los Angeles (PST)</option>
+                                        <option value="Europe/London">Europe/London (GMT)</option>
+                                        <option value="UTC">UTC</option>
+                                    </select>
+                                </div>
+                                <div class="settings-row d-flex justify-content-between align-items-center">
+                                    <div class="pr-3">
+                                        <p class="settings-label mb-0">Show portfolio on profile</p>
+                                        <p class="settings-hint">Display your domain chips publicly.</p>
+                                    </div>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="set-show-portfolio" checked>
+                                        <label class="custom-control-label" for="set-show-portfolio"></label>
+                                    </div>
+                                </div>
+
+                                <hr class="my-4">
+
+                                <p class="settings-section-title"><i class="fa-solid fa-lock mr-1"></i> Data &amp; account</p>
+
+                                <div class="d-flex flex-wrap mb-3" style="gap:8px;">
+                                    <button type="submit" class="btn btn-primary btn-sm font-weight-bold px-4"
+                                            style="background:var(--nv-primary);border-color:var(--nv-primary);">
+                                        Save settings
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold"
+                                            onclick="resetUserSettings()">Reset to defaults</button>
+                                </div>
+                                <div class="d-flex flex-wrap" style="gap:8px;">
+                                    <button type="button" class="btn btn-light border btn-sm font-weight-bold"
+                                            onclick="exportUserData()">
+                                        <i class="fa-solid fa-download mr-1"></i> Export my data
+                                    </button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm font-weight-bold"
+                                            onclick="deleteAccountDemo()">
+                                        <i class="fa-solid fa-trash mr-1"></i> Delete account
+                                    </button>
+                                </div>
+                                <p class="settings-hint mt-3 mb-0">Demo mode — settings are stored in your browser only.</p>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="view-blogs" class="nv-routing-view d-none">
+                        <div class="card-component p-4 mb-3">
+                            <div class="d-flex justify-content-between align-items-center flex-wrap" style="gap:12px;">
+                                <div>
+                                    <h5 class="font-weight-bold text-dark mb-1"><i class="fa-solid fa-blog mr-2 text-primary"></i>Domain Blogs</h5>
+                                    <p class="text-muted small mb-0">Strategy, market intel &amp; investor stories from the Namvio community.</p>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-primary font-weight-bold" onclick="openWritePostModal()">
+                                    <i class="fa-solid fa-pen mr-1"></i> Write Post
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-component p-3 mb-3">
+                            <div class="d-flex flex-wrap align-items-center" style="gap:8px;">
+                                <span class="text-muted small font-weight-bold mr-1">Filter:</span>
+                                <button type="button" class="btn btn-sm btn-primary blog-filter-btn active" data-cat="all" onclick="filterBlogs('all', this)">All</button>
+                                <button type="button" class="btn btn-sm btn-light border blog-filter-btn" data-cat="strategy" onclick="filterBlogs('strategy', this)">Strategy</button>
+                                <button type="button" class="btn btn-sm btn-light border blog-filter-btn" data-cat="ai" onclick="filterBlogs('ai', this)">.ai</button>
+                                <button type="button" class="btn btn-sm btn-light border blog-filter-btn" data-cat="io" onclick="filterBlogs('io', this)">.io</button>
+                                <button type="button" class="btn btn-sm btn-light border blog-filter-btn" data-cat="pricing" onclick="filterBlogs('pricing', this)">Pricing</button>
+                            </div>
+                        </div>
+                        <div id="blogs-grid" class="row"></div>
+                    </div>
+
+                    <div id="view-admin" class="nv-routing-view d-none">
+                        <div class="card-component p-4 mb-3 mod-dashboard-hero">
+                            <div class="d-flex justify-content-between align-items-start flex-wrap" style="gap:12px;">
+                                <div>
+                                    <h5 class="font-weight-bold text-dark mb-1">
+                                        <i class="fa-solid fa-shield-halved mr-2 text-primary"></i>Moderation Dashboard
+                                    </h5>
+                                    <p class="text-muted small mb-0">Enterprise-grade trust &amp; safety — reports, risk scoring, and enforcement.</p>
+                                </div>
+                                <div id="mod-admin-risk-display"></div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <div class="card-component p-3">
+                                    <h6 class="font-weight-bold text-dark mb-3">Manual reputation adjust</h6>
+                                    <div class="form-row">
+                                        <div class="col-5">
+                                            <input type="number" class="form-control form-control-sm" id="admin-rep-delta" placeholder="± points" value="10">
+                                        </div>
+                                        <div class="col-7">
+                                            <input type="text" class="form-control form-control-sm" id="admin-rep-note" placeholder="Reason (logged)">
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-sm btn-primary font-weight-bold mt-2"
+                                            onclick="adminAdjustReputation()">Apply to current user</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-component p-3">
+                                    <h6 class="font-weight-bold text-dark mb-2">Risk score guide</h6>
+                                    <ul class="list-unstyled small text-muted mb-0 mod-risk-legend">
+                                        <li><span class="mod-risk-pill mod-risk-safe">0–20 Safe</span> No action</li>
+                                        <li><span class="mod-risk-pill mod-risk-low">21–40 Low</span> Monitor</li>
+                                        <li><span class="mod-risk-pill mod-risk-medium">41–60 Medium</span> Review queue</li>
+                                        <li><span class="mod-risk-pill mod-risk-high">61–80 High</span> Visibility reduction</li>
+                                        <li><span class="mod-risk-pill mod-risk-critical">81–100 Critical</span> Auto shadow ban</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 mb-3">
+                                <div class="card-component p-3">
+                                    <h6 class="font-weight-bold text-dark mb-3"><i class="fa-solid fa-user-slash mr-1 text-danger"></i>Reported Users</h6>
+                                    <div id="mod-reported-users-list"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <div class="card-component p-3">
+                                    <h6 class="font-weight-bold text-dark mb-3"><i class="fa-solid fa-flag mr-1 text-warning"></i>Reported Posts</h6>
+                                    <div id="mod-reported-posts-list"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <div class="card-component p-3">
+                                    <h6 class="font-weight-bold text-dark mb-3"><i class="fa-solid fa-inbox mr-1 text-primary"></i>Pending Reviews</h6>
+                                    <div id="mod-pending-reviews-list"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <div class="card-component p-3">
+                                    <h6 class="font-weight-bold text-dark mb-3"><i class="fa-solid fa-ghost mr-1"></i>Shadow Banned Users</h6>
+                                    <div id="mod-shadow-list"></div>
+                                </div>
+                                <div class="card-component p-3 mt-3">
+                                    <h6 class="font-weight-bold text-dark mb-3"><i class="fa-solid fa-ban mr-1 text-danger"></i>Suspended Users</h6>
+                                    <div id="mod-suspended-list"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-component p-3 mb-3">
+                            <h6 class="font-weight-bold text-dark mb-3"><i class="fa-solid fa-chart-line mr-1 text-primary"></i>Reputation logs</h6>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-borderless mb-0">
+                                    <thead class="text-muted small text-uppercase">
+                                        <tr><th>When</th><th>Event</th><th>Δ</th><th>Score</th></tr>
+                                    </thead>
+                                    <tbody id="admin-rep-logs-list"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-component p-3">
+                            <h6 class="font-weight-bold text-dark mb-3"><i class="fa-solid fa-clock-rotate-left mr-1"></i>Moderation logs</h6>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-borderless mb-0">
+                                    <thead class="text-muted small text-uppercase">
+                                        <tr><th>When</th><th>Action</th><th>Target</th><th>Notes</th></tr>
+                                    </thead>
+                                    <tbody id="mod-logs-list"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="view-legal" class="nv-routing-view d-none nv-legal-view">
+                        <div class="lg-page-hero card-component mb-3">
+                            <div class="lg-page-hero-glow" aria-hidden="true"></div>
+                            <div class="lg-page-hero-mesh" aria-hidden="true">
+                                <span class="lg-hero-scales"></span>
+                                <span class="lg-hero-dot lg-hero-dot--1"></span>
+                                <span class="lg-hero-dot lg-hero-dot--2"></span>
+                                <span class="lg-hero-dot lg-hero-dot--3"></span>
+                            </div>
+                            <div class="lg-page-hero-body">
+                                <div class="lg-page-hero-icon"><i class="fa-solid fa-balance-scale"></i></div>
+                                <div class="flex-grow-1 min-width-0">
+                                    <p class="lg-page-hero-kicker mb-0">Policies &amp; compliance</p>
+                                    <h5 class="lg-page-hero-title mb-1">Legal Center</h5>
+                                    <p class="lg-page-hero-desc mb-0">All terms, privacy rules &amp; platform policies — organized by category. Last updated June 2026.</p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row lg-kpi-row" id="lg-kpi-row"></div>
+
+                        <div class="row lg-layout-row">
+                            <div class="col-lg-3 mb-3 mb-lg-0">
+                                <div class="card-component lg-nav-shell p-3">
+                                    <p class="lg-nav-label mb-2">Find a policy</p>
+                                    <div class="lg-search-wrap mb-3">
+                                        <i class="fa-solid fa-magnifying-glass lg-search-icon"></i>
+                                        <input type="search" class="form-control form-control-sm lg-search-input" id="lg-policy-search" placeholder="Search policies…" autocomplete="off">
+                                    </div>
+                                    <p class="lg-nav-label mb-2">Categories</p>
+                                    <nav class="lg-cat-nav" id="lg-cat-nav" aria-label="Legal categories"></nav>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="card-component lg-accordion-shell p-3 p-md-4">
+                                    <div class="lg-accordion-head mb-3">
+                                        <span class="lg-accordion-icon"><i class="fa-solid fa-file-contract"></i></span>
+                                        <div class="flex-grow-1 min-width-0">
+                                            <p class="lg-accordion-title mb-0">Policy library</p>
+                                            <p class="lg-accordion-sub text-muted mb-0">Browse by category or search — expand any policy for full text</p>
+                                        </div>
+                                        <div class="lg-accordion-head-actions">
+                                            <div class="lg-accordion-toolbar" id="lg-accordion-toolbar"></div>
+                                            <span class="lg-policy-count badge badge-light border font-weight-bold" id="lg-policy-count">30 policies</span>
+                                        </div>
+                                    </div>
+
+                            <div id="legal-accordion" class="lg-accordion">
+<!-- 1. Terms of Service -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading1">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                                1. Terms of Service
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse1" class="collapse show" aria-labelledby="heading1" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Users must agree to these terms to use Namvio. The platform is provided “as is” without guarantees. Users are responsible for their accounts and content. Namvio may suspend or terminate accounts at any time for violations. No guarantees are made regarding earnings, growth, or engagement. Founder Pass purchases are non-refundable unless required by law.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2. Privacy Policy -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading2">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                                2. Privacy Policy
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            We collect basic information such as name, email, profile photo, posts, messages, and device data. Data is used for authentication, personalization, security, and communication. We do not sell personal data. Users may request deletion of their data.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 3. Community Guidelines -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading3">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                                3. Community Guidelines
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Users must behave respectfully and avoid spam, scams, harassment, illegal content, or abusive behavior. Content should remain relevant to the platform. Violations may lead to warnings, suspension, or permanent bans.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 4. Payments & Founder Pass Policy -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading4">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                                4. Payments &amp; Founder Pass Policy
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Founder Pass is a one-time $49 payment, limited to 1,000 users or until a deadline. It grants lifetime access benefits. Payments are non-refundable unless legally required.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 5. Disclaimer -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading5">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                                5. Disclaimer
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Namvio does not guarantee the accuracy of user-generated content. Users are responsible for their own decisions and interactions on the platform.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 6. Data Deletion Policy -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading6">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                                                6. Data Deletion Policy
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Users may delete their accounts at any time. Data will be removed within a reasonable timeframe, except backups required for security or legal compliance.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 7. Content Ownership Policy -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading7">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                                                7. Content Ownership Policy
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Users retain ownership of their content. By posting, they grant Namvio a license to display, distribute, and promote content within the platform.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 8. Acceptable Use Policy -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading8">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                                                8. Acceptable Use Policy
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Users must not engage in spam, fraud, automated bots, scraping, harassment, illegal activity, or misuse of the platform.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 9. Account Suspension & Termination Policy -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading9">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                                                9. Account Suspension &amp; Termination Policy
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Namvio reserves the right to suspend or terminate accounts for violations, security risks, or misuse without prior notice in severe cases.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 10. Intellectual Property Policy -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading10">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                                                10. Intellectual Property Policy
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Users must not upload copyrighted material without permission. Repeat violations may result in account termination.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 11. DMCA / Copyright Policy -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading11">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
+                                                11. DMCA / Copyright Policy
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Copyright owners may request removal of infringing content. Valid claims will be reviewed and acted upon promptly.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 12. Security Policy -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading12">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
+                                                12. Security Policy
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            We implement reasonable security measures but do not guarantee absolute security. Users are responsible for maintaining account confidentiality.
+                                        </div>
+                                    </div>
+                                </div>
+... 1483 lines not shown ...
+
+                                <!-- 13. API & Automation Policy -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading13">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse13" aria-expanded="false" aria-controls="collapse13">
+                                                13. API &amp; Automation Policy
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse13" class="collapse" aria-labelledby="heading13" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Automated access, bots, or scraping are prohibited unless explicitly permitted. Abuse of APIs may result in suspension.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 14. Third-Party Services Disclaimer -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading14">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse14" aria-expanded="false" aria-controls="collapse14">
+                                                14. Third-Party Services Disclaimer
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse14" class="collapse" aria-labelledby="heading14" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Namvio uses third-party services such as hosting, authentication, and storage providers. We are not responsible for third-party outages or failures.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 15. Indemnification Clause -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading15">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse15" aria-expanded="false" aria-controls="collapse15">
+                                                15. Indemnification Clause
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse15" class="collapse" aria-labelledby="heading15" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Users agree to indemnify Namvio against any claims, damages, or liabilities arising from their use of the platform.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 16. Governing Law -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading16">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse16" aria-expanded="false" aria-controls="collapse16">
+                                                16. Governing Law
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse16" class="collapse" aria-labelledby="heading16" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            These terms are governed by applicable laws of the selected jurisdiction. Legal disputes will be handled in appropriate courts.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 17. Limitation of Liability -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading17">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse17" aria-expanded="false" aria-controls="collapse17">
+                                                17. Limitation of Liability
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse17" class="collapse" aria-labelledby="heading17" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Namvio is not responsible for any direct or indirect losses, including financial, reputational, or data-related damages.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 18. No Warranty -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading18">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse18" aria-expanded="false" aria-controls="collapse18">
+                                                18. No Warranty
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse18" class="collapse" aria-labelledby="heading18" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            The platform is provided without warranties of any kind, including performance, availability, or accuracy.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 19. Arbitration Clause -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading19">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse19" aria-expanded="false" aria-controls="collapse19">
+                                                19. Arbitration Clause
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse19" class="collapse" aria-labelledby="heading19" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Disputes should be resolved through arbitration before legal court proceedings, where applicable.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 20. Force Majeure -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading20">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse20" aria-expanded="false" aria-controls="collapse20">
+                                                20. Force Majeure
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse20" class="collapse" aria-labelledby="heading20" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Namvio is not liable for failures caused by events beyond control, such as disasters, attacks, or infrastructure failures.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 21. User Responsibility Clause -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading21">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse21" aria-expanded="false" aria-controls="collapse21">
+                                                21. User Responsibility Clause
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse21" class="collapse" aria-labelledby="heading21" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Users are solely responsible for their actions, content, and interactions on the platform.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 22. Misuse of Platform Clause -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading22">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse22" aria-expanded="false" aria-controls="collapse22">
+                                                22. Misuse of Platform Clause
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse22" class="collapse" aria-labelledby="heading22" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Any misuse such as bots, spam, impersonation, or fraudulent activity may result in account termination.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 23. Right to Modify Service -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading23">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse23" aria-expanded="false" aria-controls="collapse23">
+                                                23. Right to Modify Service
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse23" class="collapse" aria-labelledby="heading23" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Namvio may change, suspend, or discontinue any feature or service at any time without prior notice.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 24. Beta Feature Disclaimer -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading24">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse24" aria-expanded="false" aria-controls="collapse24">
+                                                24. Beta Feature Disclaimer
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse24" class="collapse" aria-labelledby="heading24" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Experimental features may contain bugs or instability. Users use them at their own risk.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 25. Backup Disclaimer -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading25">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse25" aria-expanded="false" aria-controls="collapse25">
+                                                25. Backup Disclaimer
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse25" class="collapse" aria-labelledby="heading25" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            While backups may exist, complete data recovery is not guaranteed in all scenarios.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 26. External Links Disclaimer -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading26">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse26" aria-expanded="false" aria-controls="collapse26">
+                                                26. External Links Disclaimer
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse26" class="collapse" aria-labelledby="heading26" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Namvio is not responsible for third-party websites or external links shared by users.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 27. User Content License -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading27">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse27" aria-expanded="false" aria-controls="collapse27">
+                                                27. User Content License
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse27" class="collapse" aria-labelledby="heading27" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            By posting content, users grant Namvio a worldwide license to use, display, and distribute content within the platform.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 28. No Professional Advice Disclaimer -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading28">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse28" aria-expanded="false" aria-controls="collapse28">
+                                                28. No Professional Advice Disclaimer
+                                            </button>
+                                        </h6>
+... 1235 lines not shown ...
+
+                                <!-- 29. Eligibility & Age Requirement -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading29">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse29" aria-expanded="false" aria-controls="collapse29">
+                                                29. Eligibility &amp; Age Requirement
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse29" class="collapse" aria-labelledby="heading29" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Users must be at least 18 years old or meet legal age requirements in their jurisdiction.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 30. Platform Integrity Clause -->
+                                <div class="card mb-1">
+                                    <div class="card-header p-2" id="heading30">
+                                        <h6 class="mb-0">
+                                            <button class="btn btn-link p-0 text-left w-100 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse30" aria-expanded="false" aria-controls="collapse30">
+                                                30. Platform Integrity Clause
+                                            </button>
+                                        </h6>
+                                    </div>
+                                    <div id="collapse30" class="collapse" aria-labelledby="heading30" data-parent="#legal-accordion">
+                                        <div class="card-body py-2 small">
+                                            Namvio reserves the right to take actions necessary to protect platform integrity and user safety, including restrictions without prior notice in serious cases.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                                    <div class="lg-accordion-foot mt-3 pt-3 border-top d-flex flex-wrap align-items-center" style="gap:8px;">
+                                        <button type="button" class="btn btn-sm btn-light font-weight-bold" onclick="history.back(); return false;">
+                                            <i class="fa-solid fa-arrow-left mr-1"></i> Go Back
+                                        </button>
+                                        <span class="text-muted small ml-auto mb-0">Demo policies — not legal advice.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="view-support" class="nv-routing-view d-none nv-support-view">
+                        <div class="sp-page-hero card-component mb-3">
+                            <div class="sp-page-hero-glow" aria-hidden="true"></div>
+                            <div class="sp-page-hero-body">
+                                <div class="sp-page-hero-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                                <div class="flex-grow-1 min-width-0">
+                                    <p class="sp-page-hero-kicker mb-0">Member-powered growth</p>
+                                    <h5 class="sp-page-hero-title mb-1">Support Namvio</h5>
+                                    <p class="sp-page-hero-desc mb-0">Help us build better tools, moderation, and networking for the domain investor community — not a donation, a shared investment in Namvio Social.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-component p-4 mb-3">
+                            <h6 class="font-weight-bold text-dark mb-2"><i class="fa-solid fa-seedling mr-2 text-success"></i>Why support Namvio?</h6>
+                            <p class="text-muted small mb-0">Your support funds platform reliability, new features, verification programs, and community safety. Every contribution — large or small — helps Namvio stay independent and focused on domain professionals.</p>
+                        </div>
+
+                        <div id="sp-thank-you" class="card-component p-4 mb-3 d-none sp-thank-card"></div>
+
+                        <div class="row mb-3">
+                            <div class="col-lg-7 mb-3 mb-lg-0">
+                                <div class="card-component p-4 h-100">
+                                    <h6 class="font-weight-bold text-dark mb-3"><i class="fa-solid fa-dollar-sign mr-2 text-primary"></i>Choose an amount</h6>
+                                    <div class="sp-amount-grid" id="sp-amount-grid"></div>
+                                    <div class="mt-3">
+                                        <label class="text-muted small font-weight-bold" for="sp-custom-amount">Custom amount (USD)</label>
+                                        <div class="input-group input-group-sm mt-1">
+                                            <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                            <input type="number" class="form-control" id="sp-custom-amount" min="1" max="10000" step="1" placeholder="Enter custom amount">
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap mt-3 pt-3 border-top" style="gap:12px;">
+                                        <div id="sp-checkout-summary" class="sp-checkout-summary"></div>
+                                        <button type="button" class="btn btn-primary font-weight-bold" id="sp-checkout-btn" style="background:var(--nv-primary);border-color:var(--nv-primary);" onclick="NamvioSupport.submitSupport()">
+                                            <i class="fa-brands fa-stripe mr-1"></i> Support with Stripe
+                                        </button>
+                                    </div>
+                                    <div class="custom-control custom-switch mt-3">
+                                        <input type="checkbox" class="custom-control-input" id="sp-public-toggle" checked>
+                                        <label class="custom-control-label small" for="sp-public-toggle" id="sp-privacy-label">Show my name on the Supporter Wall</label>
+                                    </div>
+                                    <p class="text-muted small mb-0 mt-2"><i class="fa-solid fa-lock mr-1"></i> Demo mode — Stripe Checkout simulated locally. Wire to Supabase + Stripe for production.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="card-component p-4 mb-3">
+                                    <h6 class="font-weight-bold text-dark mb-3"><i class="fa-solid fa-ranking-star mr-2 text-warning"></i>Top Supporters</h6>
+                                    <div id="sp-top-supporters"></div>
+                                </div>
+                                <div class="card-component p-4">
+                                    <h6 class="font-weight-bold text-dark mb-2"><i class="fa-solid fa-certificate mr-2 text-primary"></i>Supporter badges</h6>
+                                    <p class="text-muted small mb-2">$5+ Supporter · $25+ Champion · $100+ Patron · $500+ Visionary</p>
+                                    <p class="text-muted small mb-0">Badges appear on your profile when you choose public recognition.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row sp-kpi-row mb-3" id="sp-community-stats"></div>
+
+                        <div class="card-component p-4 mb-3">
+                            <h6 class="font-weight-bold text-dark mb-3"><i class="fa-solid fa-users mr-2 text-primary"></i>Supporter Wall</h6>
+                            <div class="sp-supporter-wall" id="sp-supporter-wall"></div>
+                        </div>
+
+                        <div class="card-component p-4 d-none" id="sp-history-section">
+                            <h6 class="font-weight-bold text-dark mb-3"><i class="fa-solid fa-clock-rotate-left mr-2 text-primary"></i>Your support history</h6>
+                            <div class="table-responsive">
+                                <table class="table table-sm mb-0">
+                                    <thead><tr><th>Date</th><th>Amount</th><th>Visibility</th><th>Badge</th><th>Stripe</th></tr></thead>
+                                    <tbody id="sp-history-body"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="view-guide" class="nv-routing-view d-none">
+                        <div class="nv-doc-hero card-component p-4 mb-3">
+                            <h5 class="font-weight-bold text-dark mb-1"><i class="fa-solid fa-book-open text-primary mr-2"></i>How To Use Namvio</h5>
+                            <p class="text-muted small mb-0">Your guide to profiles, reputation, posts, networking, verification, and staying safe on the domain investor network.</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 mb-3 mb-lg-0">
+                                <div class="card-component p-3 nv-guide-toc-shell">
+                                    <p class="text-uppercase text-muted small font-weight-bold mb-2">Contents</p>
+                                    <nav class="nv-guide-toc" id="gd-toc-nav"></nav>
+                                </div>
+                            </div>
+                            <div class="col-lg-8" id="gd-sections-col"></div>
+                        </div>
+                    </div>
+
+                    <div id="view-rules" class="nv-routing-view d-none">
+                        <div class="nv-doc-hero card-component p-4 mb-3">
+                            <h5 class="font-weight-bold text-dark mb-1"><i class="fa-solid fa-scale-balanced text-primary mr-2"></i>Official Namvio Community Rules</h5>
+                            <p class="text-muted small mb-0">Professional standards for domain investing discussions. Violations may result in warnings, restrictions, or suspension.</p>
+                        </div>
+                        <div id="rules-sections-col"></div>
+                    </div>
+
+                    <div id="view-help" class="nv-routing-view d-none">
+                        <div class="card-component p-4 mb-3">
+                            <h5 class="font-weight-bold text-dark mb-0"><i class="fa-solid fa-life-ring mr-2 text-primary"></i>Support Center</h5>
+                            <p class="text-muted small mb-0 mt-1">Get help, report issues, and explore platform resources.</p>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <div class="nv-help-hub-grid" id="help-hub-grid"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-component p-4">
+                                    <h6 class="font-weight-bold text-dark mb-3">Contact support</h6>
+                                    <form onsubmit="submitContactForm(event); return false;">
+                                        <div class="form-group"><input type="text" class="form-control form-control-sm" id="help-contact-name" placeholder="Your name"></div>
+                                        <div class="form-group"><input type="email" class="form-control form-control-sm" id="help-contact-email" placeholder="Email"></div>
+                                        <div class="form-group">
+                                            <select class="form-control form-control-sm" id="help-contact-topic">
+                                                <option value="feedback">Feedback</option>
+                                                <option value="bug">Report a bug</option>
+                                                <option value="abuse">Report abuse</option>
+                                                <option value="account">Account help</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group"><textarea class="form-control form-control-sm" id="help-contact-message" rows="4" placeholder="How can we help?" required></textarea></div>
+                                        <button type="submit" class="btn btn-sm btn-primary font-weight-bold" style="background:var(--nv-primary);border-color:var(--nv-primary);">Send message</button>
+                                        <p class="text-muted small mt-2 mb-0" id="help-contact-status"></p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="view-mesages" class="nv-routing-view d-none nv-mesages-view">
+                        <div class="msg-page-hero card-component mb-3">
+                            <div class="msg-page-hero-glow" aria-hidden="true"></div>
+                            <div class="msg-page-hero-body">
+                                <div class="msg-page-hero-icon"><i class="fa-solid fa-envelope"></i></div>
+                                <div class="flex-grow-1 min-width-0">
+                                    <p class="msg-page-hero-kicker mb-0">Member inbox</p>
+                                    <h5 class="msg-page-hero-title mb-1">Messages</h5>
+                                    <p class="msg-page-hero-desc mb-0">Talk privately with brokers, investors &amp; registrars — negotiate domains, share comps &amp; close deals.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-component msg-shell p-0 overflow-hidden">
+                            <div class="row no-gutters msg-layout" id="msg-layout">
+                                <div class="col-md-4 msg-sidebar-col">
+                                    <div class="msg-sidebar-header">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h6 class="font-weight-bold mb-0"><i class="fa-solid fa-inbox mr-2 text-primary"></i>Inbox</h6>
+                                            <span class="msg-unread-pill" id="msg-total-unread">0 new</span>
+                                        </div>
+                                    </div>
+                                    <div id="msg-kpi-strip" class="msg-kpi-strip"></div>
+                                    <div id="msg-filters" class="msg-filters" role="tablist" aria-label="Filter conversations"></div>
+                                    <div class="msg-search-wrap">
+                                        <i class="fa-solid fa-magnifying-glass msg-search-icon"></i>
+                                        <input type="search" class="form-control form-control-sm msg-search-input" id="msg-search-input"
+                                               placeholder="Search name, handle or message…" oninput="filterMesageThreads(this.value)">
+                                    </div>
+                                    <div id="msg-seed-compose" class="msg-seed-compose" aria-label="Message seed accounts"></div>
+                                    <div class="msg-thread-list" id="msg-thread-list"></div>
+                                </div>
+                                <div class="col-md-8 msg-main-col">
+                                    <div class="msg-empty-state" id="msg-empty-state">
+                                        <div class="msg-empty-graphic" aria-hidden="true">
+                                            <span class="msg-empty-orbit msg-empty-orbit--1"></span>
+                                            <span class="msg-empty-orbit msg-empty-orbit--2"></span>
+                                            <span class="msg-empty-orbit msg-empty-orbit--3"></span>
+                                            <i class="fa-solid fa-envelope"></i>
+                                        </div>
+                                        <p class="msg-empty-title mb-1">Your Messages</p>
+                                        <p class="msg-empty-desc mb-3">Pick a conversation from the inbox. Close anytime with <i class="fa-solid fa-xmark"></i> or tap the same thread again.</p>
+                                        <div class="msg-empty-tips">
+                                            <span><i class="fa-solid fa-shield-halved"></i> Escrow-safe</span>
+                                            <span><i class="fa-solid fa-bolt"></i> Fast replies</span>
+                                            <span><i class="fa-solid fa-user-check"></i> Verified peers</span>
+                                        </div>
+                                    </div>
+                                    <div id="msg-active-panel" class="d-none flex-column h-100 msg-active-panel">
+                                        <div class="msg-panel-header">
+                                            <button type="button" class="btn btn-link btn-sm msg-back-btn p-0 mr-2 text-primary"
+                                                    onclick="mesageBackToList()"><i class="fa-solid fa-arrow-left"></i></button>
+                                            <div class="msg-panel-avatar-wrap">
+                                                <div class="profile-thumb rounded-circle overflow-hidden">
+                                                    <img id="msg-peer-avatar" src="" alt="" width="44" height="44">
+                                                </div>
+                                                <span class="msg-panel-online d-none" id="msg-panel-online-dot"></span>
+                                            </div>
+                                            <div class="flex-grow-1 min-width-0">
+                                                <p class="font-weight-bold mb-0 text-truncate" id="msg-peer-name">—</p>
+                                                <p class="text-muted small mb-0 text-truncate" id="msg-peer-meta">—</p>
+                                                <p class="msg-peer-status mb-0" id="msg-peer-status"></p>
+                                            </div>
+                                            <span class="identity-badge badge-broker" id="msg-peer-role-badge">Broker</span>
+                                            <button type="button" class="msg-close-btn" onclick="closeMesageThread(); return false;"
+                                                    title="Close conversation" aria-label="Close conversation">
+                                                <i class="fa-solid fa-xmark"></i>
+                                            </button>
+                                        </div>
+                                        <div class="msg-panel-actions" id="msg-panel-actions"></div>
+                                        <div class="msg-messages-box" id="msg-messages-box"></div>
+                                        <div id="msg-typing-indicator" class="msg-typing d-none"></div>
+                                        <div class="msg-compose">
+                                            <div class="msg-quick-replies" id="msg-quick-replies"></div>
+                                            <form class="msg-compose-form" onsubmit="sendMesage(event)">
+                                                <div class="msg-input-wrap">
+                                                    <textarea class="form-control msg-message-input" id="msg-message-input" rows="1"
+                                                              placeholder="Write a message…" maxlength="500"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn msg-send-btn" title="Send">
+                                                    <i class="fa-solid fa-paper-plane"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right sidebar -->
+                <div class="col-lg-3 desktop-sidebar" id="nv-right-sidebar">
+                    <div class="card-component p-3 nv-sidebar-trending-card mb-3">
+                        <div class="d-flex justify-content-between align-items-start mb-1">
+                            <p class="text-uppercase font-weight-bold text-muted small mb-0" style="letter-spacing:0.5px;">Trending Keywords</p>
+                            <a href="#" class="small font-weight-bold text-primary" onclick="routeView('market-pulse', this); return false;" style="font-size:10px;">Full page <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                        <p class="text-muted mb-3" style="font-size:11px;line-height:1.4;">Top keyword domains by sales volume — Sedo-style market pulse (demo data).</p>
+                        <div id="trending-keywords-box" aria-live="polite">
+                            <p class="text-muted small mb-0 py-1">Loading trending keywords…</p>
+                        </div>
+                    </div>
+
+                    <div class="card-component p-3 nv-sidebar-sales-card mb-3">
+                        <p class="text-uppercase font-weight-bold text-muted small mb-1" style="letter-spacing:0.5px;">Domain Sales</p>
+                        <p class="text-muted mb-2" style="font-size:11px;line-height:1.4;">NameBio-style top sales — <a href="https://namebio.com/top-100-domain-name-sales-all-time" target="_blank" rel="noopener noreferrer">reference data</a> · <a href="#" class="font-weight-bold" onclick="openDomainSalesFullPage(); return false;">Analytics</a></p>
+                        <label class="domain-sales-year-label" for="domain-sales-year-select">Period</label>
+                        <select id="domain-sales-year-select" class="form-control form-control-sm domain-sales-year-select mb-2"
+                                onchange="onDomainSalesYearChange(this.value)" aria-label="Filter domain sales by year"></select>
+                        <div id="recent-domain-sales-box" aria-live="polite">
+                            <p class="text-muted small mb-0 py-1">Loading domain sales…</p>
+                        </div>
+                        <p class="text-muted mb-0 mt-2" id="domain-sales-year-hint" style="font-size:10px;"></p>
+                    </div>
+
+                    <div class="card-component p-0 nv-sponsor-sidebar-shell mb-3">
+                        <div id="nv-network-sponsors-sidebar" class="p-3"></div>
+                    </div>
+
+                    <div class="card-component p-3">
+                        <p class="text-uppercase font-weight-bold text-muted small mb-3" style="letter-spacing:0.5px;">Community stats</p>
+                        <div class="mb-3">
+                            <span class="text-muted d-block small font-weight-bold">Active investors</span>
+                            <span class="h5 font-weight-bold text-dark">12,840</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="text-muted d-block small font-weight-bold">Listings this week</span>
+                            <span class="h5 font-weight-bold text-primary">1,247</span>
+                        </div>
+                        <div>
+                            <span class="text-muted d-block small font-weight-bold">Escrow volume (30d)</span>
+                            <span class="h5 font-weight-bold text-success">$4.2M</span>
+                        </div>
+                    </div>
+
+                    <div class="card-component p-3 upgrade-cta-card">
+                        <p class="text-uppercase font-weight-bold text-primary small mb-2" style="letter-spacing:0.5px;">Go Pro</p>
+                        <p class="small text-muted mb-3">Boost listings, unlock broker DMs, and get verified seller badges.</p>
+                        <button class="btn btn-primary btn-sm btn-block font-weight-bold"
+                                style="background:var(--nv-primary);border-color:var(--nv-primary);"
+                                onclick="routeView('subscription', this); return false;">
+                            View plans
+                        </button>
+                        <p class="text-muted mb-0 mt-2 text-center" style="font-size:11px;" id="sidebar-plan-label">Plan: Free</p>
+                    </div>
+
+                    <div class="card-component p-3">
+                        <p class="text-uppercase font-weight-bold text-muted small mb-2" style="letter-spacing:0.5px;">Who to follow</p>
+                        <div id="who-to-follow-box"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="nv-domain-sales-shell" class="d-none nv-domain-sales-shell">
+            <div class="container-fluid px-3 px-lg-4" id="view-domain-sales">
+                <div class="ds-page-hero card-component mb-3">
+                    <div class="ds-page-hero-glow" aria-hidden="true"></div>
+                    <div class="ds-page-hero-body">
+                        <div class="ds-page-hero-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                        <div class="flex-grow-1 min-width-0">
+                            <p class="ds-page-hero-kicker mb-0">NameBio market intel</p>
+                            <h5 class="ds-page-hero-title mb-1" id="domain-sales-full-title">Domain Sales Analytics</h5>
+                            <p class="ds-page-hero-desc mb-0" id="domain-sales-full-subtitle">Market intelligence dashboard · NameBio Top 100 cash sales.</p>
+                        </div>
+                        <div class="ds-page-hero-actions">
+                            <button type="button" class="btn btn-sm btn-light border font-weight-bold" onclick="routeView('feed', this); return false;">
+                                <i class="fa-solid fa-arrow-left mr-1"></i> Back
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-component p-3 mb-3 ds-toolbar">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between" style="gap:12px;">
+                        <div>
+                            <label class="domain-sales-year-label mb-1" for="domain-sales-full-year-select">Period</label>
+                            <select id="domain-sales-full-year-select" class="form-control form-control-sm domain-sales-year-select" aria-label="Filter domain sales by year"></select>
+                        </div>
+                        <p class="text-muted small mb-0" id="domain-sales-full-count">—</p>
+                    </div>
+                </div>
+
+                <div id="ds-kpi-grid" class="ds-kpi-grid mb-3"></div>
+
+                <div class="row mb-3">
+                    <div class="col-lg-7 mb-3 mb-lg-0">
+                        <div class="card-component p-3 ds-panel h-100">
+                            <h6 class="font-weight-bold text-dark mb-3"><i class="fa-solid fa-trophy mr-2 text-warning"></i>Top spotlight</h6>
+                            <div id="ds-top-spotlight" class="ds-top-spotlight"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="card-component p-3 ds-panel h-100">
+                            <h6 class="font-weight-bold text-dark mb-3"><i class="fa-solid fa-lightbulb mr-2 text-primary"></i>Insights</h6>
+                            <ul id="ds-insights-list" class="ds-insights-list mb-0 pl-3"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <div class="card-component p-3 ds-panel h-100">
+                            <h6 class="font-weight-bold text-dark mb-3">Quarterly volume</h6>
+                            <div id="ds-chart-quarterly"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-component p-3 ds-panel h-100">
+                            <h6 class="font-weight-bold text-dark mb-3">Monthly volume</h6>
+                            <div id="ds-chart-monthly"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-lg-5 mb-3 mb-lg-0">
+                        <div class="card-component p-3 ds-panel h-100">
+                            <h6 class="font-weight-bold text-dark mb-3">TLD volume share</h6>
+                            <div class="ds-donut-wrap">
+                                <div id="ds-chart-tld" class="ds-donut-chart"></div>
+                                <div id="ds-chart-tld-legend" class="ds-donut-legend"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="card-component p-3 ds-panel h-100">
+                            <h6 class="font-weight-bold text-dark mb-3">Venue activity</h6>
+                            <div id="ds-chart-venues"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <div class="card-component p-3 ds-panel h-100">
+                            <h6 class="font-weight-bold text-dark mb-3">Price tiers</h6>
+                            <div id="ds-tier-breakdown"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-component p-3 ds-panel h-100">
+                            <h6 class="font-weight-bold text-dark mb-3">Domain length</h6>
+                            <div id="ds-length-breakdown" class="ds-length-grid"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-component p-3 mb-3 ds-panel">
+                    <h6 class="font-weight-bold text-dark mb-3">TLD breakdown</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm ds-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>TLD</th>
+                                    <th>Sales</th>
+                                    <th>Volume</th>
+                                    <th>Share</th>
+                                    <th>Avg</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ds-tld-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card-component p-3 ds-panel" id="ds-sales-table">
+                    <h6 class="font-weight-bold text-dark mb-3"><i class="fa-solid fa-table mr-2 text-primary"></i>Full sales table</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm ds-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Domain</th>
+                                    <th>Price</th>
+                                    <th>Date</th>
+                                    <th>Venue</th>
+                                </tr>
+                            </thead>
+                            <tbody id="domain-sales-full-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Reader Modal -->
+        <div id="blog-modal" class="d-none" onclick="if (event.target.id === 'blog-modal') closeBlogModal();" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.65);z-index:2050;display:flex;align-items:center;justify-content:center;padding:16px;">
+            <div class="card-component p-4" onclick="event.stopPropagation();" style="max-width:720px;width:100%;max-height:90vh;overflow-y:auto;">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div id="blog-modal-meta" class="small text-muted"></div>
+                    <button type="button" class="btn btn-sm btn-light" onclick="closeBlogModal()">✕</button>
+                </div>
+                <h4 class="font-weight-bold text-dark mb-3" id="blog-modal-title"></h4>
+                <div id="blog-modal-body" class="small text-dark"></div>
+            </div>
+        </div>
+
+        <!-- Write Post Modal -->
+        <div id="write-post-modal" class="d-none" onclick="if (event.target.id === 'write-post-modal') closeWritePostModal();" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.65);z-index:2060;display:flex;align-items:center;justify-content:center;padding:16px;">
+            <div class="card-component p-4" onclick="event.stopPropagation();" style="max-width:620px;width:100%;max-height:90vh;overflow-y:auto;">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="font-weight-bold mb-0"><i class="fa-solid fa-pen mr-2"></i>Write a New Post</h5>
+                    <button type="button" class="btn btn-sm btn-light" onclick="closeWritePostModal()">✕</button>
+                </div>
+                <form id="write-post-form" onsubmit="publishFakePost(event)">
+                    <div class="form-group">
+                        <label class="small font-weight-bold">Title</label>
+                        <input type="text" class="form-control form-control-sm" id="post-title" placeholder="e.g. The Future of .ai Domains" required maxlength="120">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="small font-weight-bold">Category</label>
+                            <select class="form-control form-control-sm" id="post-category" required>
+                                <option value="io">.io</option>
+                                <option value="brandable">Brandables</option>
+                                <option value="pricing">Pricing</option>
+                                <option value="escrow">Escrow</option>
+                                <option value="ai">.ai</option>
+                                <option value="strategy">Strategy</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="small font-weight-bold">Read Time</label>
+                            <input type="text" class="form-control form-control-sm" id="post-readtime" value="6 min read" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="small font-weight-bold">Short Excerpt</label>
+                        <textarea class="form-control form-control-sm" id="post-excerpt" rows="2" placeholder="One sentence summary..." required maxlength="200"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="small font-weight-bold">Content</label>
+                        <textarea class="form-control form-control-sm" id="post-content" rows="6" placeholder="Write your article here..." required></textarea>
+                    </div>
+                    <div class="d-flex justify-content-end" style="gap:8px;">
+                        <button type="button" class="btn btn-light btn-sm" onclick="closeWritePostModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-sm font-weight-bold">Publish Post</button>
+                    </div>
+                    <p class="text-muted small mt-2 mb-0 text-center">Demo — post appears in this session only.</p>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <nav class="mobile-fixed-footer d-lg-none" id="mobile-bottom-nav" aria-label="Mobile">
+        <div id="nv-bottom-nav-inner" class="d-flex w-100 justify-content-around align-items-center"></div>
+    </nav>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/reputation-system.js?v=20260627"></script>
+    <script src="assets/js/nav-system.js?v=20260627"></script>
+    <script src="assets/js/sponsored-network.js?v=20260627"></script>
+    <script src="assets/js/share-system.js?v=20260627"></script>
+    <script src="assets/js/profile-system.js?v=20260627"></script>
+    <script src="assets/js/moderation-system.js?v=20260627"></script>
+    <script src="assets/js/hof-system.js?v=20260627"></script>
+    <script src="assets/js/namebio-sales-data.js?v=20260627"></script>
+    <script src="assets/js/namebio-sales-by-year.js?v=20260627"></script>
+    <script src="assets/js/domain-sales-analytics.js?v=20260627"></script>
+    <script src="assets/js/listings-system.js?v=20260627"></script>
+    <script src="assets/js/networking-system.js?v=20260627"></script>
+    <script src="assets/js/support-namvio-system.js?v=20260627"></script>
+    <script src="assets/js/docs-system.js?v=20260627"></script>
+    <script src="assets/js/mesages-system.js?v=20260627"></script>
+    <script src="assets/js/motion-graphics.js?v=20260627"></script>
+    <script src="assets/js/app-router.js?v=20260627"></script>
+    <script>
+    (function ensureRightSidebarWidgets() {
+        function fillSidebar() {
+            if (typeof initTrending !== 'function') return;
+            var kw = document.getElementById('trending-keywords-box');
+            var sales = document.getElementById('recent-domain-sales-box');
+            var needsKw = kw && !kw.querySelector('.trending-keyword-row');
+            var needsSales = sales && !sales.querySelector('.recent-sale-row');
+            if (needsKw || needsSales) initTrending();
+        }
+        window.addEventListener('load', fillSidebar);
+        setTimeout(fillSidebar, 250);
+        setTimeout(fillSidebar, 1000);
+    })();
+    </script>
+</body>
+</html>

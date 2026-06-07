@@ -1,0 +1,256 @@
+<div id="view-identity" class="nv-routing-view d-none nv-profile-view">
+                        <div class="card-component p-0 mb-3 overflow-hidden profile-hero-card">
+                            <div class="profile-hero-cover" aria-hidden="true"></div>
+                            <div class="profile-hero-body px-4 pb-4">
+                                <div id="identity-hof-wrap" class="profile-hof-slot"></div>
+                                <div class="profile-hero-head">
+                                    <div class="profile-hero-avatar-wrap">
+                                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=160" alt=""
+                                             loading="lazy" decoding="async" width="96" height="96" id="identity-avatar-img">
+                                    </div>
+                                    <div class="profile-hero-meta">
+                                        <p class="profile-hero-kicker mb-1"><i class="fa-solid fa-id-card mr-1"></i> Domain Investor Identity</p>
+                                        <div class="d-flex align-items-center flex-wrap">
+                                            <h4 class="font-weight-bold text-dark mb-0 mr-2" id="identity-display-name">Shubham</h4>
+                                            <span id="identity-verify-badges" class="profile-verify-row"></span>
+                                        </div>
+                                        <p class="text-muted mb-0 mt-1" id="identity-handle-box">@apkadostshubham</p>
+                                        <div class="mt-2" id="identity-experience-line"></div>
+                                    </div>
+                                </div>
+                                <p class="profile-hero-bio text-muted small mb-2 identity-bio-wrap" id="identity-bio-wrap"><span id="identity-bio-box"></span></p>
+                                <div class="profile-member-chips" id="identity-member-chips"></div>
+                                <p class="text-muted small mb-0 profile-hero-email"><i class="fa-solid fa-envelope mr-1"></i><span id="identity-email-box"></span></p>
+                                <div class="d-flex flex-wrap align-items-center justify-content-between mt-3" style="gap:10px;">
+                                    <div id="identity-social-wrap"></div>
+                                    <div id="identity-actions-wrap" class="profile-actions-inline"></div>
+                                </div>
+                                <div id="identity-pinned-wrap"></div>
+                                <div id="identity-founder-pass-wrap" class="mt-3"></div>
+                                <div class="profile-hero-metrics" id="identity-hero-metrics"></div>
+                            </div>
+                        </div>
+
+                        <div class="row profile-dash-row">
+                            <div class="col-lg-7 mb-3 mb-lg-0">
+                                <div class="card-component p-4 h-100 profile-insight-card">
+                                    <div id="identity-reputation-block" class="mb-3"></div>
+                                    <div id="identity-trust-wrap"></div>
+                                    <div class="mt-2" id="identity-risk-wrap"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 mb-3 mb-lg-0">
+                                <div class="card-component p-4 h-100" id="identity-completion-wrap"></div>
+                            </div>
+                        </div>
+
+                        <div class="card-component p-4 mb-3">
+                            <h6 class="font-weight-bold text-muted text-uppercase small mb-3"><i class="fa-solid fa-chart-simple mr-1 text-primary"></i> Activity</h6>
+                            <div class="profile-stats-grid" id="identity-stats-grid"></div>
+                        </div>
+
+                        <div class="row profile-dash-row">
+                            <div class="col-lg-7 mb-3 mb-lg-0">
+                                <div class="card-component p-4 h-100 profile-lazy-section" data-profile-lazy id="profile-section-chart">
+                                    <h6 class="font-weight-bold text-muted text-uppercase small mb-2"><i class="fa-solid fa-chart-line mr-1 text-primary"></i> Reputation growth</h6>
+                                    <p class="text-muted small mb-3">Monthly trend</p>
+                                    <div id="identity-rep-chart"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 mb-3 mb-lg-0">
+                                <div class="card-component p-4 h-100 profile-featured-card">
+                                    <h6 class="font-weight-bold text-muted text-uppercase small mb-3"><i class="fa-solid fa-tag mr-1 text-success"></i> Featured sale</h6>
+                                    <div id="identity-featured-sale-wrap"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-component p-4 mb-3">
+                            <h6 class="font-weight-bold text-muted text-uppercase small mb-3"><i class="fa-solid fa-certificate mr-1 text-primary"></i> Verified badges</h6>
+                            <div class="d-flex flex-wrap profile-badge-row" id="badge-collection-box"></div>
+                        </div>
+
+                        <div class="card-component p-4 profile-tabs-card">
+                            <ul class="nav nav-pills profile-tab-nav mb-3 flex-wrap" role="tablist">
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn active" data-profile-tab="posts" onclick="NamvioProfile.switchTab('posts')"><i class="fa-solid fa-table-cells mr-1"></i>Posts</button></li>
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn" data-profile-tab="media" onclick="NamvioProfile.switchTab('media')"><i class="fa-solid fa-image mr-1"></i>Media</button></li>
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn" data-profile-tab="achievements" onclick="NamvioProfile.switchTab('achievements')"><i class="fa-solid fa-trophy mr-1"></i>Achievements</button></li>
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn" data-profile-tab="sales" onclick="NamvioProfile.switchTab('sales')"><i class="fa-solid fa-sack-dollar mr-1"></i>Sales</button></li>
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn" data-profile-tab="about" onclick="NamvioProfile.switchTab('about')"><i class="fa-solid fa-circle-info mr-1"></i>About</button></li>
+                            </ul>
+                            <div class="profile-tab-pane profile-tab-pane-animated" data-profile-pane="posts" id="profile-tab-posts-content"></div>
+                            <div class="profile-tab-pane d-none" data-profile-pane="media" id="profile-tab-media-content"></div>
+                            <div class="profile-tab-pane d-none" data-profile-pane="achievements" id="profile-tab-achievements-content"></div>
+                            <div class="profile-tab-pane d-none" data-profile-pane="sales" id="profile-tab-sales-content"></div>
+                            <div class="profile-tab-pane d-none" data-profile-pane="about" id="profile-tab-about-content"></div>
+                            <div id="identity-portfolio-wrap" class="d-none" aria-hidden="true"></div>
+                        </div>
+                    </div>","_meta":{"details":[{"old_string":"                    <!-- Identity / Profile -->
+                    <div id="view-identity" class="nv-routing-view d-none">
+                        <div class="card-component p-4 mb-3">
+                            <h5 class="font-weight-bold text-dark mb-4"><i class="fa-solid fa-id-card mr-2 text-primary"></i>Domain Investor Identity</h5>
+                            <div id="identity-hof-wrap"></div>
+                            <div class="row align-items-start">
+                                <div class="col-sm-3 text-center mb-3 mb-sm-0">
+                                    <div class="profile-thumb rounded-circle overflow-hidden mx-auto border p-1" style="width:90px;height:90px;">
+                                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120" class="rounded-circle" alt="" loading="lazy" decoding="async" id="identity-avatar-img">
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="d-flex align-items-center flex-wrap mb-1">
+                                        <h4 class="font-weight-bold text-dark mb-0 mr-2" id="identity-display-name">Shubham</h4>
+                                        <span id="identity-verify-badges" class="d-inline-flex align-items-center" style="gap:4px;"></span>
+                                    </div>
+                                    <div class="mb-2" id="identity-experience-line"></div>
+                                    <p class="text-muted mb-1" id="identity-handle-box">@apkadostshubham</p>
+                                    <p class="text-muted small mb-2 identity-bio-wrap" id="identity-bio-wrap"><span id="identity-bio-box"></span></p>
+                                    <div id="identity-member-info"></div>
+                                    <p class="text-muted small mb-2"><i class="fa-solid fa-envelope mr-1"></i><span id="identity-email-box">apkadostshubham@gmail.com</span></p>
+                                    <div class="mb-2" id="identity-rep-trust-line"></div>
+                                    <div id="identity-reputation-block"></div>
+                                    <div id="identity-trust-wrap"></div>
+                                    <div id="identity-completion-wrap"></div>
+                                    <div class="mt-2" id="identity-risk-wrap"></div>
+                                    <div id="identity-social-wrap" class="mt-2"></div>
+                                    <div id="identity-actions-wrap"></div>
+                                    <div id="identity-pinned-wrap"></div>
+                                </div>
+                            </div>
+                            <div class="mt-3" id="identity-founder-pass-wrap"></div>
+                            <hr class="my-4">
+                            <h6 class="font-weight-bold text-muted text-uppercase small mb-3">Verified badges</h6>
+                            <div class="d-flex flex-wrap" id="badge-collection-box" style="gap:8px;"></div>
+                            <hr class="my-4">
+                            <h6 class="font-weight-bold text-muted text-uppercase small mb-3" id="identity-portfolio-title">Portfolio snapshot</h6>
+                            <div id="identity-portfolio-wrap"></div>
+                        </div>
+
+                        <div class="card-component p-4 mb-3">
+                            <h6 class="font-weight-bold text-muted text-uppercase small mb-3">Activity statistics</h6>
+                            <div class="profile-stats-grid" id="identity-stats-grid"></div>
+                        </div>
+
+                        <div class="card-component p-4 mb-3" data-profile-lazy>
+                            <h6 class="font-weight-bold text-muted text-uppercase small mb-3">Reputation history</h6>
+                            <p class="text-muted small mb-3">Monthly reputation growth (Top 100 cohort reference).</p>
+                            <div id="identity-rep-chart"></div>
+                        </div>
+
+                        <div class="card-component p-4 mb-3" data-profile-lazy>
+                            <h6 class="font-weight-bold text-muted text-uppercase small mb-3">Achievements</h6>
+                            <div class="d-flex flex-wrap" id="identity-achievements-grid" style="gap:8px;"></div>
+                        </div>
+
+                        <div class="card-component p-4 mb-3">
+                            <h6 class="font-weight-bold text-muted text-uppercase small mb-3">Featured domain sale</h6>
+                            <div id="identity-featured-sale-wrap"></div>
+                        </div>
+
+                        <div class="card-component p-4">
+                            <ul class="nav nav-pills profile-tab-nav mb-3 flex-wrap" role="tablist">
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn active" data-profile-tab="posts" onclick="NamvioProfile.switchTab('posts')">Posts</button></li>
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn" data-profile-tab="media" onclick="NamvioProfile.switchTab('media')">Media</button></li>
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn" data-profile-tab="achievements" onclick="NamvioProfile.switchTab('achievements')">Achievements</button></li>
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn" data-profile-tab="sales" onclick="NamvioProfile.switchTab('sales')">Featured Sales</button></li>
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn" data-profile-tab="about" onclick="NamvioProfile.switchTab('about')">About</button></li>
+                            </ul>
+                            <div class="profile-tab-pane" data-profile-pane="posts" id="profile-tab-posts-content"></div>
+                            <div class="profile-tab-pane d-none" data-profile-pane="media" id="profile-tab-media-content" data-profile-lazy></div>
+                            <div class="profile-tab-pane d-none" data-profile-pane="achievements" id="profile-tab-achievements-content" data-profile-lazy></div>
+                            <div class="profile-tab-pane d-none" data-profile-pane="sales" id="profile-tab-sales-content" data-profile-lazy></div>
+                            <div class="profile-tab-pane d-none" data-profile-pane="about" id="profile-tab-about-content" data-profile-lazy></div>
+                        </div>
+                    </div>","old_line":213,"new_string":"                    <!-- Identity / Profile -->
+                    <div id="view-identity" class="nv-routing-view d-none nv-profile-view">
+                        <div class="card-component p-0 mb-3 overflow-hidden profile-hero-card">
+                            <div class="profile-hero-cover" aria-hidden="true"></div>
+                            <div class="profile-hero-body px-4 pb-4">
+                                <div id="identity-hof-wrap" class="profile-hof-slot"></div>
+                                <div class="profile-hero-head">
+                                    <div class="profile-hero-avatar-wrap">
+                                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=160" alt=""
+                                             loading="lazy" decoding="async" width="96" height="96" id="identity-avatar-img">
+                                    </div>
+                                    <div class="profile-hero-meta">
+                                        <p class="profile-hero-kicker mb-1"><i class="fa-solid fa-id-card mr-1"></i> Domain Investor Identity</p>
+                                        <div class="d-flex align-items-center flex-wrap">
+                                            <h4 class="font-weight-bold text-dark mb-0 mr-2" id="identity-display-name">Shubham</h4>
+                                            <span id="identity-verify-badges" class="profile-verify-row"></span>
+                                        </div>
+                                        <p class="text-muted mb-0 mt-1" id="identity-handle-box">@apkadostshubham</p>
+                                        <div class="mt-2" id="identity-experience-line"></div>
+                                    </div>
+                                </div>
+                                <p class="profile-hero-bio text-muted small mb-2 identity-bio-wrap" id="identity-bio-wrap"><span id="identity-bio-box"></span></p>
+                                <div class="profile-member-chips" id="identity-member-chips"></div>
+                                <p class="text-muted small mb-0 profile-hero-email"><i class="fa-solid fa-envelope mr-1"></i><span id="identity-email-box"></span></p>
+                                <div class="d-flex flex-wrap align-items-center justify-content-between mt-3" style="gap:10px;">
+                                    <div id="identity-social-wrap"></div>
+                                    <div id="identity-actions-wrap" class="profile-actions-inline"></div>
+                                </div>
+                                <div id="identity-pinned-wrap"></div>
+                                <div id="identity-founder-pass-wrap" class="mt-3"></div>
+                                <div class="profile-hero-metrics" id="identity-hero-metrics"></div>
+                            </div>
+                        </div>
+
+                        <div class="row profile-dash-row">
+                            <div class="col-lg-7 mb-3 mb-lg-0">
+                                <div class="card-component p-4 h-100 profile-insight-card">
+                                    <div id="identity-reputation-block" class="mb-3"></div>
+                                    <div id="identity-trust-wrap"></div>
+                                    <div class="mt-2" id="identity-risk-wrap"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 mb-3 mb-lg-0">
+                                <div class="card-component p-4 h-100" id="identity-completion-wrap"></div>
+                            </div>
+                        </div>
+
+                        <div class="card-component p-4 mb-3">
+                            <h6 class="font-weight-bold text-muted text-uppercase small mb-3"><i class="fa-solid fa-chart-simple mr-1 text-primary"></i> Activity</h6>
+                            <div class="profile-stats-grid" id="identity-stats-grid"></div>
+                        </div>
+
+                        <div class="row profile-dash-row">
+                            <div class="col-lg-7 mb-3 mb-lg-0">
+                                <div class="card-component p-4 h-100 profile-lazy-section" data-profile-lazy id="profile-section-chart">
+                                    <h6 class="font-weight-bold text-muted text-uppercase small mb-2"><i class="fa-solid fa-chart-line mr-1 text-primary"></i> Reputation growth</h6>
+                                    <p class="text-muted small mb-3">Monthly trend</p>
+                                    <div id="identity-rep-chart"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 mb-3 mb-lg-0">
+                                <div class="card-component p-4 h-100 profile-featured-card">
+                                    <h6 class="font-weight-bold text-muted text-uppercase small mb-3"><i class="fa-solid fa-tag mr-1 text-success"></i> Featured sale</h6>
+                                    <div id="identity-featured-sale-wrap"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-component p-4 mb-3">
+                            <h6 class="font-weight-bold text-muted text-uppercase small mb-3"><i class="fa-solid fa-certificate mr-1 text-primary"></i> Verified badges</h6>
+                            <div class="d-flex flex-wrap profile-badge-row" id="badge-collection-box"></div>
+                        </div>
+
+                        <div class="card-component p-4 profile-tabs-card">
+                            <ul class="nav nav-pills profile-tab-nav mb-3 flex-wrap" role="tablist">
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn active" data-profile-tab="posts" onclick="NamvioProfile.switchTab('posts')"><i class="fa-solid fa-table-cells mr-1"></i>Posts</button></li>
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn" data-profile-tab="media" onclick="NamvioProfile.switchTab('media')"><i class="fa-solid fa-image mr-1"></i>Media</button></li>
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn" data-profile-tab="achievements" onclick="NamvioProfile.switchTab('achievements')"><i class="fa-solid fa-trophy mr-1"></i>Achievements</button></li>
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn" data-profile-tab="sales" onclick="NamvioProfile.switchTab('sales')"><i class="fa-solid fa-sack-dollar mr-1"></i>Sales</button></li>
+                                <li class="nav-item"><button type="button" class="nav-link profile-tab-btn" data-profile-tab="about" onclick="NamvioProfile.switchTab('about')"><i class="fa-solid fa-circle-info mr-1"></i>About</button></li>
+                            </ul>
+                            <div class="profile-tab-pane profile-tab-pane-animated" data-profile-pane="posts" id="profile-tab-posts-content"></div>
+                            <div class="profile-tab-pane d-none" data-profile-pane="media" id="profile-tab-media-content"></div>
+                            <div class="profile-tab-pane d-none" data-profile-pane="achievements" id="profile-tab-achievements-content"></div>
+                            <div class="profile-tab-pane d-none" data-profile-pane="sales" id="profile-tab-sales-content"></div>
+                            <div class="profile-tab-pane d-none" data-profile-pane="about" id="profile-tab-about-content"></div>
+                            <div id="identity-portfolio-wrap" class="d-none" aria-hidden="true"></div>
+                        </div>
+                    </div>","new_line":213,"context_before":"                        <div id="feed-pipeline-cards"></div>
+                    </div>
+
+","context_after":"
+                    <!-- Hall of Fame -->
+                    

@@ -1,0 +1,15 @@
+const fs = require('fs');
+const path = require('path');
+const file = process.argv[2] || path.join(__dirname, '..', 'index.html');
+const h = fs.readFileSync(file, 'utf8');
+const open = h.indexOf('<div class="col-lg-6 col-md-12" id="dynamic-viewport-container">');
+const innerStart = h.indexOf('>', open) + 1;
+const rs = h.indexOf('<!-- Right sidebar -->', open);
+const close = h.lastIndexOf('</div>', rs);
+console.log('close snippet:', JSON.stringify(h.slice(close - 40, close + 60)));
+console.log('before rs:', JSON.stringify(h.slice(rs - 120, rs + 40)));
+const between = h.slice(close, rs);
+console.log('between close and rs, len=', between.length);
+console.log('between:', JSON.stringify(between.slice(0, 200)));
+const views = [...h.slice(innerStart, close).matchAll(/id="(view-[^"]+)"/g)].map((m) => m[1]);
+console.log('views before close:', views.length, views.join(', '));
